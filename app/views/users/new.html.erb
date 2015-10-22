@@ -1,19 +1,43 @@
-<div class="login">
-  <div class="container">
-    <div class="form">
-
-    <h1>Sign up</h1>
-
-    <%= form_for(@user) do |f| %>
-      <%= f.text_field :first_name, :placeholder => "First name" %>
-      <%= f.text_field :last_name, :placeholder => "Last name" %>
-      <%= f.email_field :email, :placeholder => "Email" %>
-      <%= f.password_field :password, :placeholder => "Password" %>
-      <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
-      <%= f.submit "Create an account", class: "btn-submit" %>
-    <% end %>
-
-  
+    <div id="signup" class="animate form">
+        <section class="login_content">
+            <%= form_for(@user) do |f| %>
+                <h1>Sign up</h1>
+                <div>
+                    <%= f.text_field :first_name, :placeholder => "First name", :class => "form-control" , 
+                    :required => true %>
+                </div>
+                <div>
+                    <%= f.text_field :last_name, :placeholder => "Last name", :class => "form-control" , 
+                    :required => true %>
+                </div>
+                <div>
+                    <%= f.email_field :email, :placeholder => "Email", :class => "form-control" , 
+                    :required => true %>
+                </div>
+                <div>
+                    <%= f.password_field :password, autocomplete: "off",:placeholder => "Password", 
+                    :class => "form-control" , :required => true %>
+                </div>
+                <div>
+                    <%= f.password_field :password_confirmation, autocomplete: "off",:placeholder => "Confirm Password", 
+                    :class => "form-control" , :required => true %>
+                </div>
+                <div>
+                    <%= f.submit "Sign up", :class => "btn btn-default submit" %>
+                </div>
+                <div class="clearfix"></div>
+                <div class="separator">
+                    <p class="change_link">Already have an account?
+                                <%= link_to "Log in", 'login' %>
+                    </p>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div>
+                        <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Boiling crab!</h1>
+                    </div>
+                </div>
+            <% end %>
+            <!-- form -->
+        </section>
+        <!-- content -->
     </div>
-  </div>
-</div>
