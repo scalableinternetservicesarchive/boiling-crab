@@ -1,3 +1,4 @@
+<div id="wrapper">
     <div id="signup" class="animate form">
         <section class="login_content">
             <%= form_for(@user) do |f| %>
@@ -25,10 +26,19 @@
                 <div>
                     <%= f.submit "Sign up", :class => "btn btn-default submit" %>
                 </div>
+                <% if @user.errors.any? %>
+                  <div class="alert alert-danger" role="alert">
+                    <ul>
+                      <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>                  
+                <% end %>
                 <div class="clearfix"></div>
                 <div class="separator">
                     <p class="change_link">Already have an account?
-                                <%= link_to "Log in", 'login' %>
+                                <%= link_to "Log in", 'login', :class => "to_register" %>
                     </p>
                     <div class="clearfix"></div>
                     <br />
@@ -41,3 +51,4 @@
         </section>
         <!-- content -->
     </div>
+</div>

@@ -15,6 +15,16 @@
                 <div>
                     <%= f.submit "Log in", :class => "btn btn-default submit" %>
                 </div>
+                <% if @login_errors.any? %>
+                <div class="alert alert-danger" role="alert">
+                  <ul>
+                      <% @login_errors.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                  </ul>
+                </div>     
+                
+              <% end %>
                 <div class="clearfix"></div>
                 <div class="separator">
                     <p class="change_link">New to site?

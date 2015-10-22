@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+/*
  html, body {
   background: #fff;
   font-family: Arial, sans-serif;
@@ -27,10 +27,10 @@
   padding: 0;
   width: 100%;
 }
+*/
 
 
-
-/* FORM PAGES */
+/* FORM PAGES 
 
 
 .form {
@@ -63,5 +63,5 @@ input[type=password] {
   margin-top: 6px;
 }
   
-
+*/
 

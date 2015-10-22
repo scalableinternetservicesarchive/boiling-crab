@@ -5666,16 +5666,17 @@ a.hiddenanchor{
 #wrapper{
     right: 0px;
     margin: 0px auto;
-    padding-top: 5%;
+    margin-top: 5%;
     max-width: 350px;
     position: relative;
 }
 
 #register, 
 #login{
-    top: 0px;
+    position: absolute;
+    top: 0px; width:100%;
 }
-#register{	
+#register{  
     z-index: 21;
     opacity: 0; width:100%;
 }
@@ -5851,7 +5852,7 @@ form:after {
 #username { background-position: 10px 10px !important }
 #password { background-position: 10px -53px !important }
 .login_content form div a {
-    font-size: 16px;
+    font-size: 12px;
     margin: 10px 15px 0 0;
 }
 .reset_pass{margin-top:10px !important;}
