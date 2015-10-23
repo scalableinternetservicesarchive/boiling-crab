@@ -1,0 +1,37 @@
+<% if current_user %> 
+  <ul> 
+    <li><%= current_user.email %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  </ul> 
+<% end %>
+
+<div class="header">
+  <div class="container">
+    <h1>Boiling Crab</h1>
+  </div>
+</div>
+
+<div class="tags">
+  <div class="container">
+    <div class="cards row">
+    
+      <!--
+      To do: Loop through tags and display each one with this HTML
+      <div class="card col-xs-4">
+        tag's image goes here
+        <h2> tag's title goes here </h2>
+      </div>
+      -->
+
+      <% @dishes.each do |d| %>
+      <div class="card col-xs-4">
+        <%= image_tag(d.image_url, size: "320x200") %>
+        <h2><%= d.name %></h2>
+        <p><%= d.description %><p>
+        <p>Price: <%= d.price %><p>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
