@@ -5830,7 +5830,7 @@ form:after {
     border: 1px solid #A878AF;
     outline: none;
 }
-}
+
 #username { background-position: 10px 10px !important }
 #password { background-position: 10px -53px !important }
 .login_content form div a {
