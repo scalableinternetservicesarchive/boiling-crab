@@ -25,7 +25,7 @@
 
       <% @dishes.each do |d| %>
       <div class="card col-xs-4">
-        <%= image_tag(d.image_url, size: "320x200") %>
+        <%= image_tag(d.image, size: "320x200") %>
         <h2><%= d.name %></h2>
         <p><%= d.description %><p>
         <p>Price: <%= d.price %><p>
