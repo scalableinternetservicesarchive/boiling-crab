@@ -35,7 +35,7 @@ gem 'mysql2', '~> 0.3.13'
 # gem 'capistrano-rails', group: :development
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'fog'
 
 group :development, :test do
