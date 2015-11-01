@@ -1,0 +1,20 @@
+<h1>My Profile</h1>
+
+<p>First name: <%= current_user.first_name %></p>
+<p>Last name: <%= current_user.last_name %></p>
+<p>Email: <%= current_user.email %></p>
+
+<h2>My friends</h2>
+
+<p><%= link_to "Add new friend", new_friendship_path %></p>
+
+<% @friendships.each do |f| %>
+	<p>
+		<%= User.find(f.friend_id).email %>
+		<%= link_to "delete", friendship_path(f), method: :delete, 
+													data: {confirm: 'Are you sure?'} %>
+	</p>
+<% end %>
+
+<br>
+<%= link_to "Back", posts_path %>

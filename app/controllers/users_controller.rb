@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @friendships = current_user.friendships.all
   end
 
   def new
@@ -18,7 +18,6 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id 
         redirect_to '/' 
       else 
-        # redirect_to '/signup' 
         render :action => 'new'
       end 
   end

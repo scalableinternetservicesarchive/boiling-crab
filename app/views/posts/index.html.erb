@@ -2,10 +2,11 @@
   <ul> 
     <li><%= current_user.email %></li> 
     <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+    <li><%= link_to "Profile", user_path(current_user) %>
   </ul> 
 <% end %>
 
-<h1>My Post</h1>
+<h1>My Posts</h1>
 
 <% @posts.each do |p| %>
   <h2><%= p.title %></h2>
@@ -17,6 +18,10 @@
                         data: {confirm: 'Are you sure?'} %>
 <% end %>
 
+<h1>Options</h1>
 <p>
   <%= link_to "Add new post", 'posts/new' %>
+</p>
+<p>
+  <%= link_to "Add new friend", new_friendship_path %>
 </p>
