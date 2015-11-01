@@ -1,0 +1,22 @@
+<% if current_user %> 
+  <ul> 
+    <li><%= current_user.email %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+  </ul> 
+<% end %>
+
+<h1>My Post</h1>
+
+<% @posts.each do |p| %>
+  <h2><%= p.title %></h2>
+  <p>Description: <%= p.description %><p>
+  <p>Price: <%= p.price %><p>
+  <%= link_to "detail", post_path(p) %>
+  <%= link_to "edit", edit_post_path(p) %>
+  <%= link_to "delete", post_path(p), method: :delete,
+                        data: {confirm: 'Are you sure?'} %>
+<% end %>
+
+<p>
+  <%= link_to "Add new post", 'posts/new' %>
+</p>
