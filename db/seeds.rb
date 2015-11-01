@@ -10,6 +10,11 @@ u2 = User.create(first_name: 'b', last_name: 'b', email: 'b@b', password: 'b', p
 u3 = User.create(first_name: 'c', last_name: 'c', email: 'c@c', password: 'c', password_confirmation: 'c')
 u4 = User.create(first_name: 'd', last_name: 'd', email: 'd@d', password: 'd', password_confirmation: 'd')
 
+Friendship.create(user_id: 1, friend_id: 2)
+Friendship.create(user_id: 2, friend_id: 3)
+Friendship.create(user_id: 3, friend_id: 4)
+Friendship.create(user_id: 4, friend_id: 1)
+
 Post.create(title: 'aa', description: 'aa', price: 1, user_id: u1.id)
 Post.create(title: 'aaa', description: 'aaa', price: 1, user_id: u1.id)
 Post.create(title: 'bb', description: 'bb', price: 1, user_id: u2.id)
