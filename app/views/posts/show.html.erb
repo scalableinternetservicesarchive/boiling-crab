@@ -1,3 +1,12 @@
+<% if current_user %> 
+  <ul> 
+    <li><%= current_user.email %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+    <li><%= link_to "My feed", root_url %>
+    <li><%= link_to "My Profile", user_path(current_user) %>
+  </ul> 
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @post.title %>
@@ -16,8 +25,18 @@
   <strong>Image:</strong>
   <%= image_tag(@post.image.url, size: "320x200") %>
 </p>
-<%= link_to "edit", edit_post_path(@post) %>
-<%= link_to "delete", post_path(@post), method: :delete,
-                      data: {confirm: 'Are you sure?'} %>
-<br>
+
+<p><strong>Comment:</strong></p>
+<%= render 'comments/form' %>
+<%= render @post.comments.order(id: :desc) %>
+
+<% if @post.user_id == current_user.id %>
+  <h2>Post Operation</h2>
+  <p>
+    <%= link_to "edit", edit_post_path(@post) %>
+    <%= link_to "delete", post_path(@post), method: :delete,
+                data: {confirm: 'Are you sure?'} %>
+  </p>
+<% end %>
+
 <%= link_to 'Back', posts_path %>
