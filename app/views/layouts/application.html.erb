@@ -8,6 +8,8 @@
 
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link rel="stylesheet" href="https://www.rootcdn.com/libs/animate.css/3.3.0/animate.min.css" >
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -15,6 +17,65 @@
 
 </head>
 <body style="background-color:#F7F7F7;">
+<div class="global-nav">
+    <div class="index-nav-container">
+
+        <!-- navigation logo -->
+        <div class="nav-bar-logo">
+            <!-- <img src="img/logo.jpg"> -->
+            <span>Boiling Crab</span>
+        </div>
+
+        <!-- navigation menu -->
+        <div class="nav-menu">
+            <ul class="nav-list">
+                <li id="nav-home">
+                  <%= link_to root_url do%>
+                        <span class="nav-list-icon glyphicon glyphicon-home glyphicon-lg"></span>
+                        <span class="nav-list-text">Home</span>
+                  <% end %>
+                </li>
+                <li id="nav-inventory">
+                    <%= link_to user_path(current_user) do%>
+                        <span class="nav-list-icon glyphicon glyphicon-th glyphicon-lg"></span>
+                        <span class="nav-list-text">Profile</span>
+                    <% end %>
+                </li>
+            </ul>
+        </div> 
+
+        <!-- navigation right -->
+
+        <div class="nav-right clearFix">
+
+            <div class="nav-search">
+              <form class="nav-form-search" action="/search">
+                  <input type="text" class="nav-search-input" placeholder="search" autocomplete="off" spellcheck="false">
+                  <span class="nav-search-icon-wrapper">
+                      <button type="submit" class="nav-search-icon glyphicon glyphicon-search glyphicon-lg"></button>
+                  </span>
+              </form>
+            </div>
+
+            <ul class="nav-right-actions">
+                <li class="nav-setting dropdown ">
+                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown"><img src="img/user-pic1.jpg">
+                    </a>
+                    <ul class="dropdown-menu nav-setting-dropdown">
+                      <li><a href="#"><%= current_user.email %></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Settings</a></li>
+                      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+                    </ul> 
+                </li>
+                <li class="nav-post">
+                    <button type="button" class="btn btn-primary new-post">POST</button>
+                </li>
+            </ul> 
+        </div>
+   </div>
+</div>
+
 
 <%= yield %>
 

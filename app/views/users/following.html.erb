@@ -1,64 +1,4 @@
-<div class="global-nav">
-    <div class="index-nav-container">
-
-        <!-- navigation logo -->
-        <div class="nav-bar-logo">
-            <!-- <img src="img/logo.jpg"> -->
-            <span>Boiling Crab</span>
-        </div>
-
-        <!-- navigation menu -->
-        <div class="nav-menu">
-            <ul class="nav-list">
-                <li id="nav-home">
-                  <%= link_to root_url do%>
-                        <span class="nav-list-icon glyphicon glyphicon-home glyphicon-lg"></span>
-                        <span class="nav-list-text">Home</span>
-                  <% end %>
-                </li>
-                <li id="nav-inventory">
-                    <%= link_to user_path(current_user) do%>
-                        <span class="nav-list-icon glyphicon glyphicon-th glyphicon-lg"></span>
-                        <span class="nav-list-text">Profile</span>
-                    <% end %>
-                </li>
-            </ul>
-        </div> 
-
-        <!-- navigation right -->
-
-        <div class="nav-right clearFix">
-
-            <div class="nav-search">
-              <form class="nav-form-search" action="/search">
-                  <input type="text" class="nav-search-input" placeholder="Search" autocomplete="off" spellcheck="false">
-                  <span class="nav-search-icon-wrapper">
-                      <button type="submit" class="nav-search-icon glyphicon glyphicon-search glyphicon-lg"></button>
-                  </span>
-              </form>
-            </div>
-
-            <ul class="nav-right-actions">
-                <li class="nav-setting dropdown ">
-                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown"><img src="img/user-pic1.jpg">
-                    </a>
-                    <ul class="dropdown-menu nav-setting-dropdown">
-                      <li><a href="#"><%= current_user.email %></a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Settings</a></li>
-                      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-                    </ul> 
-                </li>
-                <li class="nav-post">
-                    <button type="button" class="btn btn-primary new-post">POST</button>
-                </li>
-            </ul> 
-        </div>
-   </div>
-</div>
-
 <div class="profile-content" >
-
     <div class="profileCanopy">
         <div class="profileCanopy-header">
             <div class="profile-container">
@@ -71,13 +11,13 @@
             <div class="profile-container">
                 <div class="profileCanopy-navBar-nav">
                    <ul class="profileNav-list">
-                        <li class="profileNav-item is-active">
+                        <li class="profileNav-item">
                             <%= link_to user_path(@user), :class => "profileNav-link" do %>
                                 <div class="profileNav-label">posts</div>
                                 <div class="profileNav-value">x</div>
                             <% end %>
                         </li>
-                        <li class="profileNav-item">
+                        <li class="profileNav-item is-active" >
                             <%= link_to user_following_path(id: @user.id), :class => "profileNav-link"  do %>
                                 <div class="profileNav-label">following</div>
                                 <div class="profileNav-value">x</div>
@@ -150,53 +90,37 @@
             </div>
 
  -->
- <div class="content-middle">
-  <div class="stream-container">
-    <ol class="stream-items">
-    <% @posts.each do |post| %>
-      <li class="stream-item" >
-        <div class="stream-post">
-          <div class="stream-content">
-            <div class="inventory-item-left">
-              <a href="#">
-                  <img src="img/user-pic2.jpg" class="post-profile-avatar">
-              </a>
-            </div>
-
-            <div class="stream-item-header">
-              <a href="#">
-                <span class="post-username"><%= post.user.first_name %> <%= post.user.last_name %></span>
-              </a>
-              <span class="post-time"><%= post.updated_at%></span>
-            </div>
-            <div class="post-title"><span><%= post.title %></span></div>
-            <div class="post-description">
-            <%= post.description %>
-            </div>
-
-            <div class="post-pic-cost">
-              <div class="post-pic">
-                <img ng-src="{{post.post_pic}}">
-              </div>
-              <div class="post-cost">
-                <div class="post-cost-value">$<%= post.price %></div>
-                <div class="post-cost-num-buyers">xx</div>
+            <div class="content-middle">
+              <div class="stream-container">
+                <ul class="friends-list">
+                 <% if current_user.id == @user .id %>
+                      <li class="add-friends-card">
+                    <%= form_tag(friendships_path, method: "post") do %>
+                        <%= label_tag(:friend_name, "Enter new friend's name", class: "add-friend-label") %>
+                        <%= text_field_tag(:friend_name, nil, class: "add-friend-field") %>
+                        <%= submit_tag "add", class: "btn btn-default friends-add-btn" %>
+                    <% end %>
+                  </li>
+                  <% end %>
+                  <% @following.each do |following| %>
+                  <li class="friends-card">
+                    <div class="friends-card-inner">
+                      <%= link_to user_path(following), :class => 'friends-card-link' do%>
+                        <img src="" class="friends-card-avatar">
+                        <div class="friends-card-name"><%= following.first_name%> <%= following.last_name %></div>
+                      <% end %>
+                      <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
+                      <div>
+                        <%=link_to friendship_path(id: following.id), method: :delete, data: {confirm: 'Are you sure?'} do %>
+                          <button type="button" class="btn btn-default friends-follow-btn">Unfollow</button>
+                        <% end %>
+                      </div>
+                  </div>
+                  </li>
+                  <% end %>
+                </ul>
               </div>
             </div>
-
-            <hr class="post-hr">
-            <div class="post-action-menu clearFix">
-              <div class="post-action post-action-like"><span class="glyphicon glyphicon-comment"></span>&nbsp;reply</div>
-              <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
-              <div class="post-action post-action-share"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;like</div>
-            </div>
-          </div>
-        </div>
-      </li>
-    <% end %>
-    </ol>
-  </div>
-</div>
 
 
             <div class="dashboard dashboard-right">

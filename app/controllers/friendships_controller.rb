@@ -8,23 +8,29 @@ class FriendshipsController < ApplicationController
 	end
 
 	def create
-		unless User.exists?(params[:friend_id])
-			render 'new'
-			return
-		end
+		name_parts = params[:friend_name].split(' ')
+		user = User.find_by(first_name: name_parts[0], last_name: name_parts[1])
 
-		@friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-		if @friendship.save
-			redirect_to user_path(current_user)
+
+		if user && user.id != current_user.id
+			@friendship = current_user.friendships.build(:friend_id => user.id)
+			if @friendship.save
+				redirect_to user_following_path(:id => current_user.id)
+			else
+				# can add some error handle here
+				redirect_to user_following_path(:id => current_user.id)			
+			end
 		else
-			render 'new'
+			redirect_to user_following_path(:id => current_user.id)
+			
 		end
 	end
 
 	def destroy
-		@friendship = current_user.friendships.find(params[:id])
+		@friendship = current_user.friendships.find_by(friend_id: params[:id])
+
 		@friendship.destroy
-		redirect_to user_path(current_user)
+		redirect_to user_following_path(id: current_user.id)
 	end
 
 	private

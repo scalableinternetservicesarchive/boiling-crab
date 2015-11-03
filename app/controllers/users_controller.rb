@@ -6,8 +6,24 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = current_user.posts.all
-    @friendships = current_user.friendships.all
+    @user = User.find(params[:id])
+    @posts = @user.posts.all
+    @friendships = @user.friendships.all
+  end
+
+  def following
+    @user = User.find(params[:id])
+    following_id = @user.friendships.all.pluck(:friend_id)
+    @following = User.where(id: following_id)
+    render locals: {
+      error: ""
+    }
+  end
+
+  def follower
+    @user = User.find(params[:id])
+    follower_id = Friendship.where(friend_id: @user.id).pluck(:user_id)
+    @followers = User.where(id: follower_id)
   end
 
   def feed
