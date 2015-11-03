@@ -17,6 +17,8 @@
 
 </head>
 <body style="background-color:#F7F7F7;">
+
+<% if current_user %>
 <div class="global-nav">
     <div class="index-nav-container">
 
@@ -75,6 +77,7 @@
         </div>
    </div>
 </div>
+<%end%>
 
 
 <%= yield %>
