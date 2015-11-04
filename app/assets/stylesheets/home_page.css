@@ -398,6 +398,11 @@ ul, ol {
   display: inline;
 }
 
+.post-form-label {
+  color: #66757f;
+  font-size: 18px;
+  font-weight: 300;
+}
 .card-middot {
   color: #66757f;
   font-size: 12px;

@@ -71,7 +71,9 @@
                     </ul> 
                 </li>
                 <li class="nav-post">
-                    <button type="button" class="btn btn-primary new-post">POST</button>
+                    <%= link_to new_post_path do %>
+                        <button type="button" class="btn btn-primary new-post">POST</button>
+                    <% end %>
                 </li>
             </ul> 
         </div>

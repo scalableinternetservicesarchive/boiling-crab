@@ -1,62 +1,3 @@
-<div class="global-nav">
-    <div class="index-nav-container">
-
-        <!-- navigation logo -->
-        <div class="nav-bar-logo">
-            <!-- <img src="img/logo.jpg"> -->
-            <span>Boiling Crab</span>
-        </div>
-
-        <!-- navigation menu -->
-        <div class="nav-menu">
-            <ul class="nav-list">
-                <li id="nav-home">
-                  <%= link_to root_url do%>
-                        <span class="nav-list-icon glyphicon glyphicon-home glyphicon-lg"></span>
-                        <span class="nav-list-text">Home</span>
-                  <% end %>
-                </li>
-                <li id="nav-inventory">
-                    <%= link_to user_path(current_user) do%>
-                        <span class="nav-list-icon glyphicon glyphicon-th glyphicon-lg"></span>
-                        <span class="nav-list-text">Profile</span>
-                    <% end %>
-                </li>
-            </ul>
-        </div> 
-
-        <!-- navigation right -->
-
-        <div class="nav-right clearFix">
-
-            <div class="nav-search">
-              <form class="nav-form-search" action="/search">
-                  <input type="text" class="nav-search-input" placeholder="Search" autocomplete="off" spellcheck="false">
-                  <span class="nav-search-icon-wrapper">
-                      <button type="submit" class="nav-search-icon glyphicon glyphicon-search glyphicon-lg"></button>
-                  </span>
-              </form>
-            </div>
-
-            <ul class="nav-right-actions">
-                <li class="nav-setting dropdown ">
-                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown"><img src="img/user-pic1.jpg">
-                    </a>
-                    <ul class="dropdown-menu nav-setting-dropdown">
-                      <li><a href="#"><%= current_user.email %></a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Settings</a></li>
-                      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-                    </ul> 
-                </li>
-                <li class="nav-post">
-                    <button type="button" class="btn btn-primary new-post">POST</button>
-                </li>
-            </ul> 
-        </div>
-   </div>
-</div>
-
 <div class="profile-content" >
 
     <div class="profileCanopy">
@@ -199,91 +140,91 @@
 </div>
 
 
-            <div class="dashboard dashboard-right">
-                <div class="dashboardRecCard module">
-                  <div class="dashboardRecCard-header">
-                    <h3 class="card-header"><span>Popular sellers</span></h3>
-                    <span class="card-middot">&#8729;</span>
-                    <a role="button" class="card-link">Refresh</a>
-                    <span class="card-middot">&#8729;</span>
-                    <a role="button" class="card-link">View all</a>
-                  </div>
+<div class="dashboard dashboard-right">
+    <div class="dashboardRecCard module">
+      <div class="dashboardRecCard-header">
+        <h3 class="card-header"><span>Popular sellers</span></h3>
+        <span class="card-middot">&#8729;</span>
+        <a role="button" class="card-link">Refresh</a>
+        <span class="card-middot">&#8729;</span>
+        <a role="button" class="card-link">View all</a>
+      </div>
 
-                  <div class="dashboardRecCard-items">
-                    <ul class="dashboardRecCard-itemsList">
-                      <li class="dashboardRecCard-item">
-                        <div class="rec-user-dismiss">x</div>
-                        <div class="dashboardRecCard-item-inner">
-                          <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
-                            <div class="rec-user-name">Ziqiang Shi</div>
-                          </a>
-                          <div class="rec-user-description">Followed by 25 people</div>
-                          <div class="">
-                            <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="dashboardRecCard-item">
-                        <div class="rec-user-dismiss">x</div>
-                        <div class="dashboardRecCard-item-inner">
-                          <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
-                            <div class="rec-user-name">Ziqiang Shi</div>
-                          </a>
-                          <div class="rec-user-description">Followed by 25 people</div>
-                          <div class="">
-                            <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="dashboardRecCard module">
-                  <div class="dashboardRecCard-header">
-                    <h3 class="card-header"><span>People you may know</span></h3>
-                    <span class="card-middot">&#8729;</span>
-                    <a role="button" class="card-link">Refresh</a>
-                    <span class="card-middot">&#8729;</span>
-                    <a role="button" class="card-link">View all</a>
-                  </div>
-
-                  <div class="dashboardRecCard-items">
-                    <ul class="dashboardRecCard-itemsList">
-                      <li class="dashboardRecCard-item">
-                        <div class="rec-user-dismiss">x</div>
-                        <div class="dashboardRecCard-item-inner">
-                          <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
-                            <div class="rec-user-name">Ziqiang Shi</div>
-                          </a>
-                          <div class="rec-user-description">25 mutual people</div>
-                          <div class="">
-                            <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
-                          </div>
-                        </div>
-                      </li>
-
-                      <li class="dashboardRecCard-item">
-                        <div class="rec-user-dismiss">x</div>
-                        <div class="dashboardRecCard-item-inner">
-                          <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
-                            <div class="rec-user-name">Ziqiang Shi</div>
-                          </a>
-                          <div class="rec-user-description">10 mutual friends</div>
-                          <div class="">
-                            <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+      <div class="dashboardRecCard-items">
+        <ul class="dashboardRecCard-itemsList">
+          <li class="dashboardRecCard-item">
+            <div class="rec-user-dismiss">x</div>
+            <div class="dashboardRecCard-item-inner">
+              <a href="#" class="dashboardRecCard-item-link">
+                <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                <div class="rec-user-name">Ziqiang Shi</div>
+              </a>
+              <div class="rec-user-description">Followed by 25 people</div>
+              <div class="">
+                <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
+              </div>
             </div>
+          </li>
+
+          <li class="dashboardRecCard-item">
+            <div class="rec-user-dismiss">x</div>
+            <div class="dashboardRecCard-item-inner">
+              <a href="#" class="dashboardRecCard-item-link">
+                <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                <div class="rec-user-name">Ziqiang Shi</div>
+              </a>
+              <div class="rec-user-description">Followed by 25 people</div>
+              <div class="">
+                <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dashboardRecCard module">
+      <div class="dashboardRecCard-header">
+        <h3 class="card-header"><span>People you may know</span></h3>
+        <span class="card-middot">&#8729;</span>
+        <a role="button" class="card-link">Refresh</a>
+        <span class="card-middot">&#8729;</span>
+        <a role="button" class="card-link">View all</a>
+      </div>
+
+      <div class="dashboardRecCard-items">
+        <ul class="dashboardRecCard-itemsList">
+          <li class="dashboardRecCard-item">
+            <div class="rec-user-dismiss">x</div>
+            <div class="dashboardRecCard-item-inner">
+              <a href="#" class="dashboardRecCard-item-link">
+                <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                <div class="rec-user-name">Ziqiang Shi</div>
+              </a>
+              <div class="rec-user-description">25 mutual people</div>
+              <div class="">
+                <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
+              </div>
+            </div>
+          </li>
+
+          <li class="dashboardRecCard-item">
+            <div class="rec-user-dismiss">x</div>
+            <div class="dashboardRecCard-item-inner">
+              <a href="#" class="dashboardRecCard-item-link">
+                <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                <div class="rec-user-name">Ziqiang Shi</div>
+              </a>
+              <div class="rec-user-description">10 mutual friends</div>
+              <div class="">
+                <button type="button" class="btn btn-default rec-follow-btn">Follow</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
 
         </div>
     </div>

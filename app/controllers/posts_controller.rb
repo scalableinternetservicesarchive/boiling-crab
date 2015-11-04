@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 		@post = current_user.posts.new(post_params)
 
 		if @post.save
-			redirect_to posts_path
+			redirect_to root_url
   	else
   		render :new
   	end
