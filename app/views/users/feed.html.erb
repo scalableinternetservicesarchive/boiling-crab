@@ -85,49 +85,49 @@
   <div class="content-middle">
     <div class="stream-container">
       <ol class="stream-items">
-      <% @feed_posts.each do |post| %>
-        <li class="stream-item">
-          <div class="stream-post">
-            <div class="stream-content">
-              <div class="inventory-item-left">
-                <a href="#">
-                    <img src="img/user-pic2.jpg" class="post-profile-avatar">
-                </a>
-              </div>
-
-              <div class="stream-item-header">
-                <%=link_to user_path(post.user) do %>
-                  <span class="post-username"><%= post.user.first_name %> <%= post.user.last_name %></span>
-                <% end %>
-                <span class="post-time"><%= post.updated_at %></span>
-              </div>
-              <div class="post-title"><span><%= post.title %></span></div>
-              <div class="post-description"><%= post.description %></div>
-
-              <div class="post-pic-cost">
-                <div class="post-pic">
-                  <img src="img/post-pic.jpg">
+        <% @feed_posts.each do |post| %>
+          <li class="stream-item">
+            <div class="stream-post">
+              <div class="stream-content">
+                <div class="inventory-item-left">
+                  <a href="#">
+                      <img src="img/user-pic2.jpg" class="post-profile-avatar">
+                  </a>
                 </div>
-                <div class="post-cost">
-                  <div class="post-cost-value">$<%= post.price %></div>
-                    <% if !post.orders.find_by(user_id: @user.id) %>
-                      <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
-                    <% else %>
-                       <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
-                    <% end %>
-                </div>
-              </div>
 
-              <hr class="post-hr">
-              <div class="post-action-menu clearFix">
-                <div class="post-action post-action-like"><span class="glyphicon glyphicon-comment"></span>&nbsp;Details</div>
-<!--                 <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
-                <div class="post-action post-action-share"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;like</div> -->
+                <div class="stream-item-header">
+                  <%=link_to user_path(post.user) do %>
+                    <span class="post-username"><%= post.user.first_name %> <%= post.user.last_name %></span>
+                  <% end %>
+                  <span class="post-time"><%= post.updated_at %></span>
+                </div>
+                <div class="post-title"><span><%= post.title %></span></div>
+                <div class="post-description"><%= post.description %></div>
+
+                <div class="post-pic-cost">
+                  <div class="post-pic">
+                    <img src="img/post-pic.jpg">
+                  </div>
+                  <div class="post-cost">
+                    <div class="post-cost-value">$<%= post.price %></div>
+                      <% if !post.orders.find_by(user_id: @user.id) %>
+                        <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+                      <% else %>
+                         <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+                      <% end %>
+                  </div>
+                </div>
+
+                <hr class="post-hr">
+                <div class="post-action-menu clearFix">
+                  <div class="post-action post-action-like"><span class="glyphicon glyphicon-comment"></span>&nbsp;Details</div>
+  <!--                 <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
+                  <div class="post-action post-action-share"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;like</div> -->
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-      <% end %>
+          </li>
+        <% end %>
       </ol>
     </div>
   </div>
@@ -220,47 +220,4 @@
   </div>
 
 </div>
-
-<script>
-  function buy(post_id, ele) {
-    $.ajax({
-      url: "/posts/" + post_id + "/orders",
-      type: "POST",
-      data: {},
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      success: function(data)
-      {
-          //data - response from server
-          console.log("buy successful");
-          ele.innerHTML = "Cancel";
-          ele.classList.remove("post-cost-buy-btn");
-          ele.classList.add("post-cost-cancel-btn");
-          ele.setAttribute('onclick', 'cancel(' + post_id + ',this)');
-      },
-      error: function (error)
-      {
-        console.log("buy error");
-      }
-    });
-  }
-
-  function cancel(post_id, ele) {
-    $.ajax({
-      url:  "/posts/" + post_id + "/orders/1",
-      type: "DELETE",
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      success: function(data)
-      {
-        console.log("cancel successful");
-        ele.innerHTML = "Order";
-        ele.classList.remove("post-cost-cancel-btn");
-        ele.classList.add("post-cost-buy-btn");
-        ele.setAttribute('onclick', 'buy(' + post_id + ',this)');      
-      },
-      error: function(error) {
-        console.log("cancel error");
-      }
-    });
-  }
-</script>
 

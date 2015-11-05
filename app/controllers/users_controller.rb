@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def feed
-    feed_users_ids = current_user.friends.pluck(:id) << current_user.id
+    feed_users_ids = current_user.friends.pluck(:id)
     @feed_posts = Post.where(user_id: feed_users_ids).order(updated_at: :desc)
     @user = current_user
   end
