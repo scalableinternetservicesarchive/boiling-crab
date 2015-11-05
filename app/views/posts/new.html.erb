@@ -23,23 +23,23 @@
       <div class="dashboardProfileCard-stats">
           <ul class="dashboardProfileCard-statsList clearFix">
             <li class="dashboardProfileCard-stat">
-              <a href="#" class="dashboardProfileCard-statLink u-linkClean">
+              <%= link_to user_path(@user), :class => "dashboardProfileCard-statLink u-linkClean" do %>
                 <span class="dashboardProfileCard-statLabel">Sell</span>
                 <span class="dashboardProfileCard-statValue"><%= @user.nPost %></span>
-              </a>
+              <% end %>
             </li>
             <li class="dashboardProfileCard-stat">
-              <a href="#" class="dashboardProfileCard-statLink u-linkClean">
+              <%= link_to user_following_path(id: @user.id), :class => "dashboardProfileCard-statLink u-linkClean"  do %>
                 <span class="dashboardProfileCard-statLabel">FOLLOWING</span>
                 <span class="dashboardProfileCard-statValue"><%= @user.nFollowing %></span>
-              </a>
+              <% end %>
             </li>
 
             <li class="dashboardProfileCard-stat">
-              <a href="#" class="dashboardProfileCard-statLink u-linkClean">
+              <%= link_to user_follower_path(id: @user.id), :class => "dashboardProfileCard-statLink u-linkClean" do %>
                 <span class="dashboardProfileCard-statLabel">FOLLOWERS</span>
                 <span class="dashboardProfileCard-statValue"><%= @user.nFollower %></span>
-              </a>
+              <% end %>
             </li>
           </ul>
       </div>
