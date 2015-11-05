@@ -116,10 +116,49 @@
               </div>
 
               <hr class="post-hr">
+              <div>
+                <% post.comments.each do |comment| %>
+                <div class="a-reply clearfix">  
+                  <div class="reply-content">   
+                    <p class="reply-info clearfix">   
+                      <a href="http://www.renren.com/233058773/profile" class="user-name" target="_blank" namecard="233058773">
+                        <%= User.find(comment.commender_id).first_name %>
+                      </a>    
+                      <span class="reply-time">
+                        <%= comment.updated_at %>
+                      </span>    
+                    </p>
+                    <span class="text">
+                      <%= comment.body %>
+                      </span> 
+                  </div>
+                </div>
+                <hr class="post-hr">  
+                <% end %>
+              </div>
               <div class="post-action-menu clearFix">
-                <div class="post-action post-action-like"><span class="glyphicon glyphicon-comment"></span>&nbsp;reply</div>
+                <div class="post-action post-action-like">
+                  <a href="javascript:alert(1);">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    &nbsp;reply
+                  </a>
+                </div>
                 <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
                 <div class="post-action post-action-share"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;like</div>
+              </div>
+              <div >
+                <hr class="post-hr">  
+                      <% @post = post; %>
+                      <%= render 'comments/form' %>
+
+        <!--         <form class="form-inline" action="/posts/<%= post.id %>/comments" accept-charset="UTF-8" method="post"> 
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="comment[body]" id="comment_<%= post.id %>" placeholder="Input your comments here">
+                  </div>
+                  <button type="submit" class="btn btn-default">
+                    Submit
+                  </button>
+                </form>                -->
               </div>
             </div>
           </div>
@@ -128,6 +167,7 @@
       </ol>
     </div>
   </div>
+
 
   <!-- right dashboard -->
   <div class="dashboard dashboard-right">
