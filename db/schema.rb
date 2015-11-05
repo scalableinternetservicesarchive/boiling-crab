@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104232019) do
+ActiveRecord::Schema.define(version: 20151105004559) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body",         limit: 255
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20151104232019) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "orders", ["post_id"], name: "index_orders_on_post_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",              limit: 255
@@ -58,5 +68,7 @@ ActiveRecord::Schema.define(version: 20151104232019) do
   end
 
   add_foreign_key "comments", "posts"
+  add_foreign_key "orders", "posts"
+  add_foreign_key "orders", "users"
   add_foreign_key "posts", "users"
 end

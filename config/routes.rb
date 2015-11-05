@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :friendships
   resources :posts do
     resources :comments
+    resources :orders
   end
+
+
 
   get 'signup'  => 'users#new'
   get 'login' => 'sessions#new'

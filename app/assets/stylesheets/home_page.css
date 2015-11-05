@@ -606,7 +606,14 @@ ul, ol {
   text-align: center;
 }
 .post-cost-buy-btn {
-  color: #8899a6;
+  color: green;
+  font-size: 50px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.post-cost-cancel-btn {
+  color: red;
   font-size: 50px;
   margin-top: 30px;
   text-align: center;
@@ -898,3 +905,4 @@ ul, ol {
   width: 68px;
   border-radius: 7px;
 }
+
