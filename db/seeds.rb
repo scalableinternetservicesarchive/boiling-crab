@@ -5,10 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-u1 = User.create(first_name: 'a', last_name: 'a', email: 'a@a', password: 'a', password_confirmation: 'a')
-u2 = User.create(first_name: 'b', last_name: 'b', email: 'b@b', password: 'b', password_confirmation: 'b')
-u3 = User.create(first_name: 'c', last_name: 'c', email: 'c@c', password: 'c', password_confirmation: 'c')
-u4 = User.create(first_name: 'd', last_name: 'd', email: 'd@d', password: 'd', password_confirmation: 'd')
+u1 = User.create(first_name: 'a', last_name: 'a', email: 'a@a', password: 'a', password_confirmation: 'a', nFollowing: 1, nFollower: 1, nPost: 2)
+u2 = User.create(first_name: 'b', last_name: 'b', email: 'b@b', password: 'b', password_confirmation: 'b', nFollowing: 1, nFollower: 1, nPost: 2)
+u3 = User.create(first_name: 'c', last_name: 'c', email: 'c@c', password: 'c', password_confirmation: 'c', nFollowing: 1, nFollower: 1, nPost: 2)
+u4 = User.create(first_name: 'd', last_name: 'd', email: 'd@d', password: 'd', password_confirmation: 'd', nFollowing: 1, nFollower: 1, nPost: 2)
 
 Friendship.create(user_id: 1, friend_id: 2)
 Friendship.create(user_id: 2, friend_id: 3)

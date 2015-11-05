@@ -13,8 +13,12 @@ class FriendshipsController < ApplicationController
 
 
 		if user && user.id != current_user.id
-			@friendship = current_user.friendships.build(:friend_id => user.id)
-			if @friendship.save
+			friendship = current_user.friendships.build(:friend_id => user.id)
+			if friendship.save
+				current_user.nFollowing += 1
+				current_user.save
+				user.nFollower += 1
+				user.save
 				redirect_to user_following_path(:id => current_user.id)
 			else
 				# can add some error handle here
@@ -30,6 +34,13 @@ class FriendshipsController < ApplicationController
 		@friendship = current_user.friendships.find_by(friend_id: params[:id])
 
 		@friendship.destroy
+
+		current_user.nFollowing -= 1
+		current_user.save
+		friend = User.find(params[:id])
+		friend.nFollower -= 1
+		friend.save
+
 		redirect_to user_following_path(id: current_user.id)
 	end
 

@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
+		@user = current_user
 	end
 
 	def edit
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
 		@post = current_user.posts.new(post_params)
 
 		if @post.save
+			current_user.update({nPost: current_user.nPost + 1})
 			redirect_to root_url
   	else
   		render :new

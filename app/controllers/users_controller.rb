@@ -14,9 +14,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     following_id = @user.friendships.all.pluck(:friend_id)
     @following = User.where(id: following_id)
-    render locals: {
-      error: ""
-    }
   end
 
   def follower
@@ -28,6 +25,7 @@ class UsersController < ApplicationController
   def feed
     feed_users_ids = current_user.friends.pluck(:id) << current_user.id
     @feed_posts = Post.where(user_id: feed_users_ids).order(updated_at: :desc)
+    @user = current_user
   end
 
   def new

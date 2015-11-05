@@ -25,20 +25,20 @@
             <li class="dashboardProfileCard-stat">
               <a href="#" class="dashboardProfileCard-statLink u-linkClean">
                 <span class="dashboardProfileCard-statLabel">Sell</span>
-                <span class="dashboardProfileCard-statValue">xx</span>
+                <span class="dashboardProfileCard-statValue"><%= @user.nPost %></span>
               </a>
             </li>
             <li class="dashboardProfileCard-stat">
               <a href="#" class="dashboardProfileCard-statLink u-linkClean">
                 <span class="dashboardProfileCard-statLabel">FOLLOWING</span>
-                <span class="dashboardProfileCard-statValue">xx</span>
+                <span class="dashboardProfileCard-statValue"><%= @user.nFollowing %></span>
               </a>
             </li>
 
             <li class="dashboardProfileCard-stat">
               <a href="#" class="dashboardProfileCard-statLink u-linkClean">
                 <span class="dashboardProfileCard-statLabel">FOLLOWERS</span>
-                <span class="dashboardProfileCard-statValue">x</span>
+                <span class="dashboardProfileCard-statValue"><%= @user.nFollower %></span>
               </a>
             </li>
           </ul>

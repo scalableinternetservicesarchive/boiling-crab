@@ -15,19 +15,19 @@
                         <li class="profileNav-item is-active">
                             <%= link_to user_path(@user), :class => "profileNav-link" do %>
                                 <div class="profileNav-label">posts</div>
-                                <div class="profileNav-value">x</div>
+                                <div class="profileNav-value"><%= @user.nPost %></div>
                             <% end %>
                         </li>
                         <li class="profileNav-item">
                             <%= link_to user_following_path(id: @user.id), :class => "profileNav-link"  do %>
                                 <div class="profileNav-label">following</div>
-                                <div class="profileNav-value">x</div>
+                                <div class="profileNav-value"><%= @user.nFollowing %></div>
                             <% end %>
                         </li>
                         <li class="profileNav-item">
                             <%= link_to user_follower_path(id: @user.id), :class => "profileNav-link" do %>
                                 <div class="profileNav-label">followers</div>
-                                <div class="profileNav-value">xx</div>
+                                <div class="profileNav-value"><%= @user.nFollower %></div>
                             <% end %>
                         </li>
                     </ul>
