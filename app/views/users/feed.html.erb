@@ -124,9 +124,10 @@
                 <div class="a-reply clearfix">  
                   <div class="reply-content">   
                     <p class="reply-info clearfix">   
-                      <a href="http://www.renren.com/233058773/profile" class="user-name" target="_blank" namecard="233058773">
-                        <%= User.find(comment.commender_id).first_name %>
-                      </a>    
+                      <%=link_to user_path(comment.commender_id) do %>
+                        <%commenter = User.find(comment.commender_id)%>
+                          <span class="post-username"><%= commenter.first_name %> <%= commenter.last_name %></span>
+                      <% end %>   
                       <span class="reply-time">
                         <%= comment.updated_at %>
                       </span>    
