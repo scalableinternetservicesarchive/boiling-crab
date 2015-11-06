@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'user/:id/following' => 'users#following', as: 'user_following'
   get 'user/:id/follower' => 'users#follower', as: 'user_follower'
 
+  get 'orders/:id/deal' => 'orders#deal', as:'order_deal'
+
   root 'users#feed'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

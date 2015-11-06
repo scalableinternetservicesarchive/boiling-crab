@@ -21,16 +21,16 @@
       <div class="post-pic"><%= image_tag post.image.url %></div>
       <div class="post-cost">
         <div class="post-cost-value">$<%= post.price %></div>
-        <%if current_user.id != post.user_id %>
-          <% if !post.orders.find_by(user_id: current_user.id) %>
-            <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+          <%if current_user.id != post.user_id %>
+            <% if !post.orders.find_by(user_id: current_user.id) %>
+              <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+            <% else %>
+              <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+            <% end %>
           <% else %>
-            <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+            <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
           <% end %>
-        <% else %>
-        <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
-        <% end %>
-      </div>
+       </div>
 
     </div>
 
@@ -39,62 +39,76 @@
     <!-- Display the options -->
     <div class="post-action-menu clearFix">
       <div class="post-action post-action-like">
-        <a href="javascript:#">
-          <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
+        <a href="javascript:void(0)" onclick='toggleComment(<%= post.id %>)'>
+          <span class="glyphicon  glyphicon-comment"></span>
           &nbsp;Comments
         </a>
       </div>
 
+
+      <% if current_user.id == post.user_id %>
       <div class="post-action post-action-like">
-        <a href="javascript:#">
+        <a href="javascript:void(0)" onclick='toggleOrder(<%= post.id %>)'>
           <span class="glyphicon glyphicon-comment"></span>
-          &nbsp;Details
+          &nbsp;Sell
         </a>
       </div>
+      <% end %>
 
       <% if current_user.id == post.user_id %>
         <div class="post-action post-action-like">
           <%= link_to post_path(post), method: :delete do %>
-            <span class="glyphicon glyphicon-comment"></span>
-            &nbsp;Delete
+            <span class="glyphicon glyphicon-trash" style="color: red"></span>
+            &nbsp;<span style="color: red">Delete</span>
           <% end %>
         </div>
       <% end %>
-
-      <!--
-      <div class="post-action post-action-comment">
-        <a href="javascript:#">
-          <span class="glyphicon glyphicon-share-alt"></span>
-          &nbsp;share
-        </a>
-      </div>
-
-      <div class="post-action post-action-comment">
-        <span class="glyphicon glyphicon-share-alt"></span>
-        &nbsp;share
-      </div>
-
-      <div class="post-action post-action-share">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        &nbsp;like
-      </div>
-      -->
     </div>
 
     <hr class="post-hr">
 
-    <!-- Display the comments -->
-    <div>
-      <%= render post.comments.order(id: :desc) %>
+    <div id="comment-section-<%= post.id%>">
+      <!-- Display the comments -->
+      <div>
+        <%= render post.comments.order(id: :desc) %>
+      </div>
+
+      <hr class="post-hr">
+      <!-- Add new comment -->
+      <div >
+        <% @post = post %>
+        <%= render 'comments/form' %>
+      </div>
     </div>
 
-    <hr class="post-hr">
-
-    <!-- Add new comment -->
-    <div >
-      <% @post = post %>
-      <%= render 'comments/form' %>
-    </div>
+    <ul class="friends-list" id="order-section-<%= post.id %>" style="display: none">
+      <% post.orders.each do |order| %>
+      <li class="friends-card">
+        <div class="friends-card-inner">
+          <% user = User.find(order.user_id) %>
+          <%= link_to user_path(user), :class => 'friends-card-link' do%>
+            <img src="" class="friends-card-avatar">
+            <div class="friends-card-name"><%= user.first_name%> <%= user.last_name %></div>
+          <% end %>
+          <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
+          <div>
+            <%=link_to order_deal_path(order) do %>
+              <button type="button" class="btn btn-default friends-follow-btn">Sell</button>
+            <% end %>
+          </div>
+      </div>
+      </li>
+      <% end %>
+    </ul>
 
   </div>
 </li>
+
+<script>
+function toggleComment(post_id) {
+  $('#comment-section-' + post_id).toggle();
+}
+function toggleOrder(post_id) {
+  $('#order-section-' + post_id).toggle();
+}
+</script>

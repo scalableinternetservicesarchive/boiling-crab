@@ -43,11 +43,12 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to :back
+		redirect_to user_path(current_user)
 	end
 
 	private
 		def post_params
-			params.require(:post).permit(:title, :description, :price, :image)
+			params[:post][:sell_to] = -1
+			params.require(:post).permit(:title, :description, :price, :image, :sell_to)
 		end
 end
