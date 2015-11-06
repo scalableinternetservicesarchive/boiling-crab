@@ -1,12 +1,99 @@
-<h2><%= post.title %></h2>
-<p>Description: <%= post.description %><p>
-<p>Price: <%= post.price %><p>
-<p>Posted time: <%= post.updated_at %><p>
-<p>Posted by: <%= post.user.first_name %> <%= post.user.last_name %></p>
+<li class="stream-item">
+  <div class="stream-post">
+    <div class="stream-content">
 
-<%= link_to "detail", post_path(post) %>
-<% if post.user_id == current_user.id %>
-	<%= link_to "edit", edit_post_path(post) %>
-	<%= link_to "delete", post_path(post), method: :delete,
-              data: {confirm: 'Are you sure?'} %>
-<% end %>
+      <div class="inventory-item-left">
+        <a href="#">
+          <%= image_tag post.user.image.url %>
+        </a>
+      </div>
+
+      <div class="stream-item-header">
+        <%=link_to user_path(post.user) do %>
+          <span class="post-username"><%= post.user.first_name %> <%= post.user.last_name %></span>
+        <% end %>
+        <span class="post-time"><%= post.updated_at %></span>
+      </div>
+
+      <div class="post-title"><span><%= post.title %></span></div>
+      <div class="post-description"><%= post.description %></div>
+      <div class="post-pic-cost">
+      <div class="post-pic"><%= image_tag post.image.url %></div>
+      <div class="post-cost">
+        <div class="post-cost-value">$<%= post.price %></div>
+        <%if @user.id != current_user.id %>
+          <% if !post.orders.find_by(user_id: current_user.id) %>
+            <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+          <% else %>
+            <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+          <% end %>
+        <% else %>
+        <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <hr class="post-hr">
+
+    <!-- Display the comments -->
+    <div>
+      <%= render post.comments.order(id: :desc) %>
+    </div>
+
+    <div class="post-action-menu clearFix">
+
+      <div class="post-action post-action-like">
+        <a href="javascript:#">
+          <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
+          &nbsp;reply
+        </a>
+      </div>
+
+      <div class="post-action post-action-comment">
+        <a href="javascript:#">
+          <span class="glyphicon glyphicon-share-alt"></span>
+          &nbsp;share
+        </a>
+      </div>
+
+      <div class="post-action post-action-like">
+        <a href="javascript:#">
+          <span class="glyphicon glyphicon-comment"></span>
+          &nbsp;Details
+        </a>
+      </div>
+
+      <% if current_user.id == post.user_id %>
+        <div class="post-action post-action-like">
+          <%= link_to post_path(post), method: :delete do %>
+            <span class="glyphicon glyphicon-comment"></span>
+            &nbsp;Delete
+          <% end %>
+        </div>
+      <% end %>
+
+      <!--
+      <div class="post-action post-action-comment">
+        <span class="glyphicon glyphicon-share-alt"></span>
+        &nbsp;share
+      </div>
+
+      <div class="post-action post-action-share">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        &nbsp;like
+      </div>
+      -->
+
+    </div>
+
+    <hr class="post-hr">
+
+    <!-- Add new comment -->
+    <div >
+      <% @post = post %>
+      <%= render 'comments/form' %>
+    </div>
+
+  </div>
+</li>

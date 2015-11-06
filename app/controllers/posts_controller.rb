@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
 		if @post.save
 			current_user.update({nPost: current_user.nPost + 1})
-			redirect_to root_url
+			redirect_to user_path(current_user)
   	else
   		render :new
   	end
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		redirect_to posts_path
+		redirect_to :back
 	end
 
 	private
