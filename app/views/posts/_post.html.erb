@@ -21,14 +21,20 @@
       <div class="post-pic"><%= image_tag post.image.url %></div>
       <div class="post-cost">
         <div class="post-cost-value">$<%= post.price %></div>
-          <%if current_user.id != post.user_id %>
-            <% if !post.orders.find_by(user_id: current_user.id) %>
-              <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+          <%if post.sell_to == -1 %>
+            <%if current_user.id != post.user_id %>
+              <% if !post.orders.find_by(user_id: current_user.id) %>
+                <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
+              <% else %>
+                <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+              <% end %>
             <% else %>
-              <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
+              <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
             <% end %>
           <% else %>
-            <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
+            <div class="post-sold-to-label">Sold to</div>
+            <% user = User.find(post.sell_to) %>
+            <div class="post-sold-to-name"><%= user.first_name %> <%= user.last_name %></div>
           <% end %>
        </div>
 
@@ -41,18 +47,18 @@
       <div class="post-action post-action-like">
         <a href="javascript:void(0)" onclick='toggleComment(<%= post.id %>)'>
           <span class="glyphicon  glyphicon-comment"></span>
-          &nbsp;Comments
+          &nbsp;<%= post.comments.count %> Comments
         </a>
       </div>
 
 
-      <% if current_user.id == post.user_id %>
-      <div class="post-action post-action-like">
-        <a href="javascript:void(0)" onclick='toggleOrder(<%= post.id %>)'>
-          <span class="glyphicon glyphicon-comment"></span>
-          &nbsp;Sell
-        </a>
-      </div>
+      <% if current_user.id == post.user_id && post.sell_to == -1 %>
+        <div class="post-action post-action-like">
+          <a href="javascript:void(0)" onclick='toggleOrder(<%= post.id %>)'>
+            <span class="glyphicon glyphicon-comment"></span>
+            &nbsp;<%=post.orders.count %> Orders
+          </a>
+        </div>
       <% end %>
 
       <% if current_user.id == post.user_id %>
@@ -67,7 +73,7 @@
 
     <hr class="post-hr">
 
-    <div id="comment-section-<%= post.id%>">
+    <div id="comment-section-<%= post.id%>" style="display: none">
       <!-- Display the comments -->
       <div>
         <%= render post.comments.order(id: :desc) %>
@@ -93,7 +99,7 @@
           <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
           <div>
             <%=link_to order_deal_path(order) do %>
-              <button type="button" class="btn btn-default friends-follow-btn">Sell</button>
+              <button type="button" class="btn btn-default friends-follow-btn">Order</button>
             <% end %>
           </div>
       </div>

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'user/:id/following' => 'users#following', as: 'user_following'
   get 'user/:id/follower' => 'users#follower', as: 'user_follower'
+  get 'user/:id/sold' => 'users#sold', as: 'user_sold'
 
   get 'orders/:id/deal' => 'orders#deal', as:'order_deal'
 

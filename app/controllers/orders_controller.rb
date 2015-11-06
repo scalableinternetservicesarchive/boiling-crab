@@ -10,6 +10,9 @@ class OrdersController < ApplicationController
   def deal
     order = Order.find(params[:id])
     post = Post.find(order.post_id)
+    seller = User.find(post.user_id)
+    seller.nSold += 1
+    seller.save
     post.sell_to = order.user_id
     post.save
     redirect_to user_path(User.find(post.user_id))

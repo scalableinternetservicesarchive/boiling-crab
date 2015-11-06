@@ -4,7 +4,7 @@
         <div class="profileCanopy-header">
             <div class="profile-container">
                 <div class="profile-avatar">
-                    <img class="profile-avatar-img" ng-src="{{user.user_pic}}">
+                    <%= image_tag(@user.image.url, class: "profile-avatar-img") %>
                 </div>
             </div>
         </div>
@@ -19,19 +19,20 @@
                             <% end %>
                         </li>
 
-                        <li class="profileNav-item">
+                        <li class="profileNav-item is-active">
                             <%= link_to user_sold_path(@user), :class => "profileNav-link" do %>
-                                <div class="profileNav-label">sold</div>
+                                <div class="profileNav-label">Sold</div>
                                 <div class="profileNav-value"><%= @user.nSold %></div>
                             <% end %>
                         </li>
+                        
                         <li class="profileNav-item">
                             <%= link_to user_following_path(id: @user.id), :class => "profileNav-link"  do %>
                                 <div class="profileNav-label">following</div>
                                 <div class="profileNav-value"><%= @user.nFollowing %></div>
                             <% end %>
                         </li>
-                        <li class="profileNav-item is-active">
+                        <li class="profileNav-item">
                             <%= link_to user_follower_path(id: @user.id), :class => "profileNav-link" do %>
                                 <div class="profileNav-label">followers</div>
                                 <div class="profileNav-value"><%= @user.nFollower %></div>
@@ -100,22 +101,9 @@
  -->
             <div class="content-middle">
               <div class="stream-container">
-                <ul class="friends-list">
-                  <% @followers.each do |follower| %>
-                  <li class="friends-card">
-                    <div class="friends-card-inner">
-                      <%= link_to user_path(follower), :class => 'friends-card-link' do%>
-                        <img src="" class="friends-card-avatar">
-                        <div class="friends-card-name"><%= follower.first_name%> <%= follower.last_name %></div>
-                      <% end %>
-                     <!--  <div class="friends-card-description">Followed by {{ following.followBy}} people</div>
-                      <div>
-                        <button type="button" class="btn btn-default friends-follow-btn">Unfollow</button>
-                      </div>
- -->                  </div>
-                  </li>
-                  <% end %>
-                </ul>
+                <ol class="stream-items">
+                  <%= render @posts %>
+                </ol>
               </div>
             </div>
 
@@ -136,7 +124,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">Followed by 25 people</div>
@@ -150,7 +138,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">Followed by 25 people</div>
@@ -178,7 +166,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">25 mutual people</div>
@@ -192,7 +180,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">10 mutual friends</div>

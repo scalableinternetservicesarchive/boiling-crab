@@ -612,6 +612,20 @@ ul, ol {
   text-align: center;
 }
 
+.post-sold-to-label {
+  color: green;
+  font-size: 25px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.post-sold-to-name {
+  color: green;
+  font-size: 25px;
+  margin-top: 30px;
+  text-align: center;
+}
+
 .post-cost-cancel-btn {
   color: red;
   font-size: 50px;

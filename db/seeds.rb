@@ -6,13 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 u1 = User.create(first_name: 'Ziqiang', last_name: 'Shi', email: 'a@a', password: 'a', password_confirmation: 'a',
-	nFollowing: 1, nFollower: 1, nPost: 2, image: 'http://ccgexpo.cn/ckeditor_assets/pictures/000/000/253/content_image007.jpg')
+	nFollowing: 1, nFollower: 1, nPost: 2, nSold: 0, image: 'http://ccgexpo.cn/ckeditor_assets/pictures/000/000/253/content_image007.jpg')
 u2 = User.create(first_name: 'Shijian', last_name: 'Zheng', email: 'b@b', password: 'b', password_confirmation: 'b',
-	nFollowing: 1, nFollower: 1, nPost: 2, image: 'http://img9.dzdwl.com/img/11759906_152609217127_2.jpg')
+	nFollowing: 1, nFollower: 1, nPost: 2, nSold: 0, image: 'http://img9.dzdwl.com/img/11759906_152609217127_2.jpg')
 u3 = User.create(first_name: 'Kai', last_name: 'Wang', email: 'c@c', password: 'c', password_confirmation: 'c',
-	nFollowing: 1, nFollower: 1, nPost: 2, image: 'http://wyxgroup-img.stor.appsina.com/9e2acb4f9f404a4b088a1d7c81583d54.jpg')
+	nFollowing: 1, nFollower: 1, nPost: 2,  nSold: 0, image: 'http://wyxgroup-img.stor.appsina.com/9e2acb4f9f404a4b088a1d7c81583d54.jpg')
 u4 = User.create(first_name: 'Yu', last_name: 'Xie', email: 'd@d', password: 'd', password_confirmation: 'd',
-	nFollowing: 1, nFollower: 1, nPost: 2, image: 'http://www.80ktv.net/cs/uploads/allimg/130926/103G32L6-2.jpg')
+	nFollowing: 1, nFollower: 1, nPost: 2,  nSold: 0, image: 'http://www.80ktv.net/cs/uploads/allimg/130926/103G32L6-2.jpg')
 
 Friendship.create(user_id: u1.id, friend_id: u2.id)
 Friendship.create(user_id: u1.id, friend_id: u3.id)

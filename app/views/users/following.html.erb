@@ -13,8 +13,14 @@
                    <ul class="profileNav-list">
                         <li class="profileNav-item">
                             <%= link_to user_path(@user), :class => "profileNav-link" do %>
-                                <div class="profileNav-label">posts</div>
+                                <div class="profileNav-label">Selling</div>
                                 <div class="profileNav-value"><%= @user.nPost %></div>
+                            <% end %>
+                        </li>
+                        <li class="profileNav-item">
+                            <%= link_to user_sold_path(@user), :class => "profileNav-link" do %>
+                                <div class="profileNav-label">sold</div>
+                                <div class="profileNav-value"><%= @user.nSold %></div>
                             <% end %>
                         </li>
                         <li class="profileNav-item is-active" >

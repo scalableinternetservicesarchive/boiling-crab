@@ -7,7 +7,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.all.order(created_at: :desc)
+    @posts = @user.posts.where(sell_to: -1).order(created_at: :desc)
+  end
+
+  def sold
+    @user = User.find(params[:id])
+    @posts = @user.posts.where.not(sell_to: -1).order(created_at: :desc)
   end
 
   def following
@@ -24,7 +29,7 @@ class UsersController < ApplicationController
 
   def feed
     feed_users_ids = current_user.friends.pluck(:id)
-    @feed_posts = Post.where(user_id: feed_users_ids).order(updated_at: :desc)
+    @feed_posts = Post.where(user_id: feed_users_ids, sell_to: -1).order(updated_at: :desc)
     @user = current_user
     @comment = Comment.new
   end
