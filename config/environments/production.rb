@@ -26,6 +26,13 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   #config.assets.js_compressor = :uglifier
+  class NoCompression
+	def compress(string)
+		#do nothing
+		string
+	end
+  end
+  config.assets.compress = true
   config.assets.js_compressor = NoCompression.new
   # config.assets.css_compressor = :sass
   config.assets.css_compressor = NoCompression.new
