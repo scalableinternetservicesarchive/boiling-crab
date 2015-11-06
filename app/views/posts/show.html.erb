@@ -214,7 +214,10 @@
 
 <p><strong>Comment:</strong></p>
 <%= render 'comments/form' %>
-<%= render @post.comments.order(id: :desc) %>
+<% @post.comments.each do |comment| %>
+  <% @comment = comment %>
+  <%= render 'comments/comment' %>
+<% end %>
 
 <% if @post.user_id == current_user.id %>
   <h2>Post Operation</h2>

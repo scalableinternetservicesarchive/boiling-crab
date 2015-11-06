@@ -121,34 +121,29 @@
               <hr class="post-hr">
               <div>
                 <% post.comments.each do |comment| %>
-                <div class="a-reply clearfix">  
-                  <div class="reply-content">   
-                    <p class="reply-info clearfix">   
-                      <%=link_to user_path(comment.commender_id) do %>
-                        <%commenter = User.find(comment.commender_id)%>
-                          <span class="post-username"><%= commenter.first_name %> <%= commenter.last_name %></span>
-                      <% end %>   
-                      <span class="reply-time">
-                        <%= comment.updated_at %>
-                      </span>    
-                    </p>
-                    <span class="text">
-                      <%= comment.body %>
-                      </span> 
-                  </div>
-                </div>
-                <hr class="post-hr">  
+                  <% @comment = comment %>
+                  <%= render 'comments/comment' %>
                 <% end %>
               </div>
               <div class="post-action-menu clearFix">
                 <div class="post-action post-action-like">
-                  <a href="javascript:alert(1);">
-                    <span class="glyphicon glyphicon-comment"></span>
+                  <a href="javascript:#">
+                    <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
                     &nbsp;reply
                   </a>
                 </div>
-                <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
-                <div class="post-action post-action-like"><span class="glyphicon glyphicon-comment"></span>&nbsp;Details</div>
+                <div class="post-action post-action-comment">
+                  <a href="javascript:#">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                    &nbsp;share
+                  </a>
+                </div>
+                <div class="post-action post-action-like">
+                  <a href="javascript:#">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    &nbsp;Details
+                  </a>
+                </div>
   <!--                 <div class="post-action post-action-comment"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;share</div>
                   <div class="post-action post-action-share"><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;like</div> -->
               </div>
