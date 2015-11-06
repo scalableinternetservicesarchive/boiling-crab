@@ -1,11 +1,9 @@
-<p>
-	<%= User.find(comment.commender_id)[:email] %>:
-	<%= comment.created_at %>
-</p>
-<p>
-	<%= comment.body %>
-	<% if current_user.id == comment.commender_id %>
-		<%= link_to 'delete', [comment.post, comment], method: :delete,
-              	data: {confirm: 'Are you sure?'} %>
-  <% end %>
-</p>
+<div class="well well-sm" style="margin-top: 20px">
+  <%= comment.message %><br>
+  <%= link_to("Reply",
+              {controller: "comments",
+              action: "new",
+              comment: {parent_id: comment.id, submission_id: comment.submission.id}},
+              class: 'btn btn-primary btn-xs') %>
+  <%= render comment.replies %>
+</div>

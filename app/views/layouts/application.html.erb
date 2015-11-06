@@ -1,88 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BoilingCrab</title>
+  <title>Demo</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://www.rootcdn.com/libs/animate.css/3.3.0/animate.min.css" >
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css' %>
+  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js' %>
 
-  <!-- Custom styling plus plugins -->
-
+  <%= csrf_meta_tags %>
 </head>
-<body style="background-color:#F7F7F7;">
-
-<% if current_user %>
-<div class="global-nav">
-    <div class="index-nav-container">
-
-        <!-- navigation logo -->
-        <div class="nav-bar-logo">
-            <!-- <img src="img/logo.jpg"> -->
-            <span>Boiling Crab</span>
-        </div>
-
-        <!-- navigation menu -->
-        <div class="nav-menu">
-            <ul class="nav-list">
-                <li id="nav-home">
-                  <%= link_to root_url do%>
-                        <span class="nav-list-icon glyphicon glyphicon-home glyphicon-lg"></span>
-                        <span class="nav-list-text">Home</span>
-                  <% end %>
-                </li>
-                <li id="nav-inventory">
-                    <%= link_to user_path(current_user) do%>
-                        <span class="nav-list-icon glyphicon glyphicon-th glyphicon-lg"></span>
-                        <span class="nav-list-text">Profile</span>
-                    <% end %>
-                </li>
-            </ul>
-        </div> 
-
-        <!-- navigation right -->
-
-        <div class="nav-right clearFix">
-
-            <div class="nav-search">
-              <form class="nav-form-search" action="/search">
-                  <input type="text" class="nav-search-input" placeholder="search" autocomplete="off" spellcheck="false">
-                  <span class="nav-search-icon-wrapper">
-                      <button type="submit" class="nav-search-icon glyphicon glyphicon-search glyphicon-lg"></button>
-                  </span>
-              </form>
-            </div>
-
-            <ul class="nav-right-actions">
-                <li class="nav-setting dropdown ">
-                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown"><img src="img/user-pic1.jpg">
-                    </a>
-                    <ul class="dropdown-menu nav-setting-dropdown">
-                      <li><a href="#"><%= current_user.email %></a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Settings</a></li>
-                      <li><%= link_to "Log out", logout_path, method: "delete" %></li>
-                    </ul> 
-                </li>
-                <li class="nav-post">
-                    <%= link_to new_post_path do %>
-                        <button type="button" class="btn btn-primary new-post">POST</button>
-                    <% end %>
-                </li>
-            </ul> 
-        </div>
-   </div>
-</div>
-<%end%>
-
-
-<%= yield %>
-
+<body>
+  <div class="container">
+  <nav class="navbar navbar-default">
+    <a class="navbar-brand" href="/">Demo App</a>
+  </nav>
+    <%= flash_messages %>
+    <%= yield %>
+  </div>
 </body>
 </html>

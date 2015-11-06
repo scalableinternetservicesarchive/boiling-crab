@@ -1,0 +1,28 @@
+<h3>Submissions</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Community</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= link_to(submission.title, submission.url) %></td>
+        <td><%= submission.url %></td>
+        <td><%= submission.community.name %></td>
+        <td><%= link_to "#{submission.comments.size} comments", submission, class: 'btn btn-primary btn-xs'  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Submission', new_submission_path, class: 'btn btn-primary' %>
+<%= link_to 'New Community', new_community_path, class: 'btn btn-primary' %>
+
