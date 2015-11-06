@@ -61,7 +61,8 @@
 
             <ul class="nav-right-actions">
                 <li class="nav-setting dropdown ">
-                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown"><img src="img/user-pic1.jpg">
+                    <a class="nav-setting-toggle dropdown-toggle" data-toggle="dropdown">
+                      <%= image_tag current_user.image.url %>
                     </a>
                     <ul class="dropdown-menu nav-setting-dropdown">
                       <li><a href="#"><%= current_user.email %></a></li>
