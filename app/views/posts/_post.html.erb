@@ -36,24 +36,12 @@
 
     <hr class="post-hr">
 
-    <!-- Display the comments -->
-    <div>
-      <%= render post.comments.order(id: :desc) %>
-    </div>
-
+    <!-- Display the options -->
     <div class="post-action-menu clearFix">
-
       <div class="post-action post-action-like">
         <a href="javascript:#">
           <span class="glyphicon glyphicon glyphicon-thumbs-up"></span>
-          &nbsp;reply
-        </a>
-      </div>
-
-      <div class="post-action post-action-comment">
-        <a href="javascript:#">
-          <span class="glyphicon glyphicon-share-alt"></span>
-          &nbsp;share
+          &nbsp;Comments
         </a>
       </div>
 
@@ -75,6 +63,13 @@
 
       <!--
       <div class="post-action post-action-comment">
+        <a href="javascript:#">
+          <span class="glyphicon glyphicon-share-alt"></span>
+          &nbsp;share
+        </a>
+      </div>
+
+      <div class="post-action post-action-comment">
         <span class="glyphicon glyphicon-share-alt"></span>
         &nbsp;share
       </div>
@@ -84,7 +79,13 @@
         &nbsp;like
       </div>
       -->
+    </div>
 
+    <hr class="post-hr">
+
+    <!-- Display the comments -->
+    <div>
+      <%= render post.comments.order(id: :desc) %>
     </div>
 
     <hr class="post-hr">
