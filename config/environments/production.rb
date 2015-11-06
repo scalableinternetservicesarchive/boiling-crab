@@ -24,8 +24,18 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  class NoCompression
+	  def compress(string)
+		  #do nothing
+		  string
+	  end
+  end
+
+  config.assets.compress = true
+  config.assets.js_compressor = NoCompression.new
+  config.assets.css_compressor = NoCompression.new
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
