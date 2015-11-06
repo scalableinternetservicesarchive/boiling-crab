@@ -45,8 +45,12 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id 
         redirect_to '/' 
       else 
-        render :action => 'new'
+        redirect_to error_path
       end 
+  end
+
+  def error
+
   end
 
   private 

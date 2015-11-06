@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get 'user/:id/follower' => 'users#follower', as: 'user_follower'
   get 'user/:id/sold' => 'users#sold', as: 'user_sold'
 
-  get 'orders/:id/deal' => 'orders#deal', as:'order_deal'
+  get 'orders/:id/deal' => 'orders#deal', as: 'order_deal'
+
+  get 'error' => 'users#error', as: 'error'
 
   root 'users#feed'
   # The priority is based upon order of creation: first created -> highest priority.

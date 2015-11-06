@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     order = Order.find(params[:id])
     post = Post.find(order.post_id)
     seller = User.find(post.user_id)
+    seller.nPost -= 1
     seller.nSold += 1
     seller.save
     post.sell_to = order.user_id

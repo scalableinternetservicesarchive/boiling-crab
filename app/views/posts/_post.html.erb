@@ -34,7 +34,9 @@
           <% else %>
             <div class="post-sold-to-label">Sold to</div>
             <% user = User.find(post.sell_to) %>
-            <div class="post-sold-to-name"><%= user.first_name %> <%= user.last_name %></div>
+              <%= link_to user_path(user) do  %>
+                <div class="post-sold-to-name"><%= user.first_name %> <%= user.last_name %></div>
+              <% end %>
           <% end %>
        </div>
 
@@ -99,7 +101,7 @@
           <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
           <div>
             <%=link_to order_deal_path(order) do %>
-              <button type="button" class="btn btn-default friends-follow-btn">Order</button>
+              <button type="button" class="btn btn-default friends-follow-btn">Sell to him/her</button>
             <% end %>
           </div>
       </div>

@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 			current_user.update({nPost: current_user.nPost + 1})
 			redirect_to user_path(current_user)
   	else
-  		render :new
+  		redirect_to error_path
   	end
 	end
 

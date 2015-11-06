@@ -599,7 +599,8 @@ ul, ol {
 }
 
 .post-cost-value {
-  color: #8899a6;
+  /*color: #8899a6;*/
+  color: black;
   font-size: 30px;
   font-weight: 700;
   margin-top: 30px;
