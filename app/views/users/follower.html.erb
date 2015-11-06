@@ -4,7 +4,7 @@
         <div class="profileCanopy-header">
             <div class="profile-container">
                 <div class="profile-avatar">
-                    <img class="profile-avatar-img" ng-src="{{user.user_pic}}">
+                    <%= image_tag(@user.image.url, class: "profile-avatar-img") %>
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
                   <li class="friends-card">
                     <div class="friends-card-inner">
                       <%= link_to user_path(follower), :class => 'friends-card-link' do%>
-                        <img src="" class="friends-card-avatar">
+                        <%= image_tag(follower.image.url, class: "friends-card-avatar") %>
                         <div class="friends-card-name"><%= follower.first_name%> <%= follower.last_name %></div>
                       <% end %>
                      <!--  <div class="friends-card-description">Followed by {{ following.followBy}} people</div>
@@ -136,7 +136,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">Followed by 25 people</div>
@@ -150,7 +150,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">Followed by 25 people</div>
@@ -178,7 +178,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">25 mutual people</div>
@@ -192,7 +192,7 @@
                         <div class="rec-user-dismiss">x</div>
                         <div class="dashboardRecCard-item-inner">
                           <a href="#" class="dashboardRecCard-item-link">
-                            <img src="img/user-pic1.jpg" class="rec-user-avatar">
+                            <img src="https://sendgrid.com/blog/wp-content/uploads/2013/01/Question-mark.jpg" class="rec-user-avatar">
                             <div class="rec-user-name">Ziqiang Shi</div>
                           </a>
                           <div class="rec-user-description">10 mutual friends</div>
