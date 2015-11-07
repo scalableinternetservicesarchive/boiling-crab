@@ -47,7 +47,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (6.0.2)
+    byebug (8.0.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -91,7 +91,7 @@ GEM
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       nokogiri
-    fog-aliyun (0.0.10)
+    fog-aliyun (0.1.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       ipaddress (~> 0.8)
@@ -153,7 +153,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.0.0)
+    fog-softlayer (1.0.2)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -238,7 +238,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
