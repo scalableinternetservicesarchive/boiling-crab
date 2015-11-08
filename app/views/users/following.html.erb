@@ -57,39 +57,9 @@
                     <span>Joined date</span>
                     </div>
                 </div>
-                <div class="dashboardCategoryCard module">
-                  <div class="dashboardCategoryCard-header">
-                    <h3 class="card-header"><span>Popular goods</span></h3>
-                    <span class="card-middot">&#8729;</span>
-                    <a role="button" class="card-link">Change</a>
-                  </div>
-
-                  <div class="dashboardCategoryCard-items">
-                    <ul class="dashboardCategoryCard-itemsList">
-                      <li class="dashboardCategoryCard-item">
-                        <a href="#">
-                          <p class="goods-name">Car</p>
-                          <p class="goods-number">100 posts in this category</p>
-                        </a>
-                      </li>
-
-                      <li class="dashboardCategoryCard-item">
-                        <a href="#">
-                          <p class="goods-name">Desk</p>
-                          <p class="goods-number">130 posts in this category</p>
-                        </a>
-                      </li>
-
-                      <li class="dashboardCategoryCard-item">
-                        <a href="#">
-                          <p class="goods-name">book</p>
-                          <p class="goods-number">130 posts in this category</p>
-                        </a>
-                      </li>
-
-                    </ul>
-                  </div>
-                </div>
+                
+                <!-- left dashboard sell popular categories -->
+                <%= render "layouts/popular_categories" %>
             </div>
 
             <!-- <div ui-view></div> -->
@@ -130,7 +100,10 @@
             </div>
             
             <!-- right dashboard -->
-            <%= render "layouts/right_dashboard" %>
+            <div class="dashboard dashboard-right">
+              <%= render "layouts/popular_sellers" %>
+              <%= render "layouts/potential_friends" %>
+            </div>
 
         </div>
     </div>
