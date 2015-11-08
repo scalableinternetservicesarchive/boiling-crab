@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106182316) do
+ActiveRecord::Schema.define(version: 20151106055611) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body",         limit: 255
@@ -45,15 +45,16 @@ ActiveRecord::Schema.define(version: 20151106182316) do
     t.string   "description",        limit: 255
     t.decimal  "price",                          precision: 10
     t.integer  "user_id",            limit: 4
+    t.integer  "sell_to",            limit: 4
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.integer  "sell_to",            limit: 4
   end
 
+  add_index "posts", ["sell_to"], name: "index_posts_on_sell_to", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -61,16 +62,16 @@ ActiveRecord::Schema.define(version: 20151106182316) do
     t.string   "last_name",          limit: 255
     t.string   "email",              limit: 255
     t.string   "password_digest",    limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
     t.integer  "nFollowing",         limit: 4
     t.integer  "nFollower",          limit: 4
     t.integer  "nPost",              limit: 4
+    t.integer  "nSold",              limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.integer  "nSold",              limit: 4
   end
 
   add_foreign_key "comments", "posts"

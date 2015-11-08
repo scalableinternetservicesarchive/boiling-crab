@@ -95,7 +95,7 @@
         <div class="friends-card-inner">
           <% user = User.find(order.user_id) %>
           <%= link_to user_path(user), :class => 'friends-card-link' do%>
-            <img src="" class="friends-card-avatar">
+            <%= image_tag(user.image.url, class: "friends-card-avatar") %>
             <div class="friends-card-name"><%= user.first_name%> <%= user.last_name %></div>
           <% end %>
           <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
