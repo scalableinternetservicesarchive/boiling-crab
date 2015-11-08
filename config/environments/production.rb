@@ -95,6 +95,6 @@ Rails.application.configure do
       :region => 'us-west-2'
     },
     :fog_directory => 'scalableinternetservices',
-    :path => 'boiling-crab/public/system/:class/:attachment/:id_partition/:style/:filename'
+    :path => 'boiling-crab/production/:class/:attachment/:id_partition/:style/:filename'
   }
 end
