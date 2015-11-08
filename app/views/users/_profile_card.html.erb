@@ -1,0 +1,42 @@
+<div class="dashboardProfileCard module">
+  <a href="#" class="dashboardProfileCard-bg"></a>
+
+  <div class="dashboardProfileCard-content">
+    <div class="dashboardProfileCard-avatarContainer">
+      <a class="dashboardProfileCard-avatarLink">
+        <div class="dashboardProfileCard-avatarImage">
+          <%= image_tag user.image.url %>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="dashboardProfileCard-userFields"> 
+      <div class="dashboardProfileCard-name">
+        <a href="#" class="u-linkClean"><%= user.first_name %> <%= user.last_name %></a>
+      </div>
+  </div>
+
+  <div class="dashboardProfileCard-stats">
+    <ul class="dashboardProfileCard-statsList clearFix">
+      <li class="dashboardProfileCard-stat">
+        <%= link_to user_path(user), :class => "dashboardProfileCard-statLink u-linkClean" do %>
+          <span class="dashboardProfileCard-statLabel">Sell</span>
+          <span class="dashboardProfileCard-statValue"><%= user.nPost %></span>
+        <% end %>
+      </li>
+      <li class="dashboardProfileCard-stat">
+        <%= link_to user_following_path(id: user.id), :class => "dashboardProfileCard-statLink u-linkClean"  do %>
+          <span class="dashboardProfileCard-statLabel">FOLLOWING</span>
+          <span class="dashboardProfileCard-statValue"><%= user.nFollowing %></span>
+        <% end %>
+      </li>
+      <li class="dashboardProfileCard-stat">
+        <%= link_to user_follower_path(id: user.id), :class => "dashboardProfileCard-statLink u-linkClean"  do %>
+          <span class="dashboardProfileCard-statLabel">FOLLOWERS</span>
+          <span class="dashboardProfileCard-statValue"><%= user.nFollower %></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
