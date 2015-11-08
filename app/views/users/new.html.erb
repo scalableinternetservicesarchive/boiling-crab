@@ -24,6 +24,10 @@
                     :class => "form-control" , :required => true %>
                 </div>
                 <div>
+                    <%= f.file_field :image, autocomplete: "off",:placeholder => "Avatar" %>
+                </div>
+                <br>
+                <div>
                     <%= f.submit "Sign up", :class => "btn btn-default submit" %>
                 </div>
                 <% if @user.errors.any? %>
