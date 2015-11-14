@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
 		user = User.find_by(first_name: name_parts[0], last_name: name_parts[1])
 
 
-		if user && user.id != current_user.id
+		if user && user.id != current_user.id && current_user.friendships.find_by(friend_id: user.id).nil?
 			friendship = current_user.friendships.build(:friend_id => user.id)
 			if friendship.save
 				current_user.nFollowing += 1
