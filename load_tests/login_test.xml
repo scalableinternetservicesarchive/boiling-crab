@@ -7,25 +7,16 @@
   </clients>
 
   <servers>
-    <server host="ec2-52-34-18-56.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-33-123-54.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
-      <users arrivalrate="1" unit="second"></users>
+    <arrivalphase phase="1" duration="20" unit="second">
+      <users arrivalrate="10" unit="second"></users>
     </arrivalphase>
-<!--
-    <arrivalphase phase="2" duration="30" unit="second">
-      <users arrivalrate="2" unit="second"></users>
-    </arrivalphase>
-    <arrivalphase phase="3" duration="30" unit="second">
-      <users arrivalrate="4" unit="second"></users>
-    </arrivalphase>
--->
   </load>
 
   <options>
-    <!-- Set connection timeout to 2 seconds -->
     <option name="global_ack_timeout" value="2000"></option>
 
     <option type="ts_http" name="user_agent">
@@ -35,29 +26,9 @@
   
   <sessions>
     <session name='login' probability='100' type='ts_http'>
-      <request>
-        <dyn_variable name="authenticity_token"></dyn_variable>
-        <http url="/login" version="1.1" method="GET"></http>
-      </request>
-
-      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->
-                                            {ok, Val} = ts_dynvars:lookup(authenticity_token, DynVars),
-                                            edoc_lib:escape_uri(Val) 
-                                            end.">
-        <var name="escaped_authenticity_token" />
-      </setdynvars>
-
       <request subst="true">
-        <http url="/login" version="1.1" method="POST" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_escaped_authenticity_token%%&amp;session%5Bemail%5D=a%40a&amp;session%5Bpassword%5D=a&amp;commit=Log+in"></http>
+        <http url="/login" version="1.1" method="POST" contents="utf8=%E2%9C%93&amp;session%5Bemail%5D=a%40a&amp;session%5Bpassword%5D=a&amp;commit=Log+in"></http>
       </request>
-
-      <request>
-        <http url="/user/1/following" version="1.1" method="GET"></http> 
-      </request>
-      <request>
-        <http url="/user/2/following" version="1.1" method="GET"></http> 
-      </request>
-
     </session>
   </sessions>
 </tsung>
