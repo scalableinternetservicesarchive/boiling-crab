@@ -38,7 +38,7 @@ gem 'faker'
 gem 'newrelic_rpm'
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'fog'
 
 group :development, :test do
