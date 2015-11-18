@@ -39,16 +39,15 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
-    aws-sdk (2.1.32)
-      aws-sdk-resources (= 2.1.32)
-    aws-sdk-core (2.1.32)
-      jmespath (~> 1.0)
-    aws-sdk-resources (2.1.32)
-      aws-sdk-core (= 2.1.32)
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (6.0.2)
+    byebug (8.2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -59,7 +58,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     debug_inspector (0.0.2)
     erubis (2.7.0)
     excon (0.45.4)
@@ -68,15 +67,15 @@ GEM
       i18n (~> 0.5)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.35.0)
-      fog-aliyun
+    fog (1.36.0)
+      fog-aliyun (>= 0.1.0)
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
       fog-dynect (~> 0.0.2)
       fog-ecloud (~> 0.1)
-      fog-google (>= 0.1.1)
+      fog-google (<= 0.1.0)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -93,8 +92,8 @@ GEM
       fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri
-    fog-aliyun (0.0.10)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-aliyun (0.1.0)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       ipaddress (~> 0.8)
@@ -111,13 +110,11 @@ GEM
       fog-core (~> 1.22)
       fog-json
       inflecto (~> 0.0.2)
-    fog-core (1.32.1)
+    fog-core (1.34.0)
       builder
       excon (~> 0.45)
       formatador (~> 0.2)
       mime-types
-      net-scp (~> 1.1)
-      net-ssh (>= 2.1.3)
     fog-dynect (0.0.2)
       fog-core
       fog-json
@@ -125,7 +122,7 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (0.1.1)
+    fog-google (0.1.0)
       fog-core
       fog-json
       fog-xml
@@ -150,13 +147,13 @@ GEM
       fog-core
       fog-json
       fog-xml
-    fog-sakuracloud (1.3.3)
+    fog-sakuracloud (1.4.0)
       fog-core
       fog-json
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (1.0.0)
+    fog-softlayer (1.0.2)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -186,7 +183,6 @@ GEM
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jmespath (1.1.3)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -199,13 +195,10 @@ GEM
     mime-types (2.6.2)
     mimemagic (0.3.0)
     mini_portile (0.6.2)
-    minitest (5.8.2)
+    minitest (5.8.3)
     multi_json (1.11.2)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (3.0.1)
     newrelic_rpm (3.14.0.305)
-    nokogiri (1.6.6.2)
+    nokogiri (1.6.6.3)
       mini_portile (~> 0.6.0)
     paperclip (4.3.1)
       activemodel (>= 3.2.0)
@@ -253,7 +246,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (1.4.0)
+    spring (1.4.3)
     sprockets (3.4.0)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
@@ -285,7 +278,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
+  aws-sdk (< 2.0)
   byebug
   coffee-rails (~> 4.1.0)
   faker
@@ -306,4 +299,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.10.6
