@@ -14,6 +14,11 @@
   <%= @submission.community.name %>
 </p>
 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @submission.image.url %>
+</p>
+
 <div>
   <%= link_to("Comment on this submission", {controller: "comments", action: "new", comment: {submission_id: @submission.id}}, {class: 'btn btn-primary'} ) %>
 </div>

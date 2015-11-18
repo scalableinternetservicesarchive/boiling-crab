@@ -25,17 +25,8 @@ Rails.application.configure do
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
-  #config.assets.js_compressor = :uglifier
-  class NoCompression
-	def compress(string)
-		#do nothing
-		string
-	end
-  end
-  config.assets.compress = true
-  config.assets.js_compressor = NoCompression.new
+  config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
-  config.assets.css_compressor = NoCompression.new
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -85,4 +76,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+    :storage => :fog,
+    :fog_credentials => {
+      :use_iam_profile => true,
+      :provider => 'AWS',
+      :region => 'us-west-2'
+    },
+    :fog_directory => 'scalableinternetservices',
+    :path => 'demo/'
+  }
+
+
 end
