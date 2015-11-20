@@ -9,13 +9,15 @@
 <h1>My Posts</h1>
 
 <% @posts.each do |p| %>
-  <h2><%= p.title %></h2>
-  <p>Description: <%= p.description %><p>
-  <p>Price: <%= p.price %><p>
-  <%= link_to "detail", post_path(p) %>
-  <%= link_to "edit", edit_post_path(p) %>
-  <%= link_to "delete", post_path(p), method: :delete,
-                        data: {confirm: 'Are you sure?'} %>
+  <% cache(cache_key_for_submission_row(p)) do %>
+    <h2><%= p.title %></h2>
+    <p>Description: <%= p.description %><p>
+    <p>Price: <%= p.price %><p>
+    <%= link_to "detail", post_path(p) %>
+    <%= link_to "edit", edit_post_path(p) %>
+    <%= link_to "delete", post_path(p), method: :delete,
+                          data: {confirm: 'Are you sure?'} %>
+  <% end %>
 <% end %>
 
 <h1>Options</h1>
