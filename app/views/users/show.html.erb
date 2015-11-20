@@ -29,7 +29,7 @@
                         <li class="profileNav-item">
                             <%= link_to user_following_path(id: @user.id), :class => "profileNav-link", :remote => true do %>
                                 <div class="profileNav-label">following</div>
-                                <div class="profileNav-value"><%= @user.nFollowing %></div>
+                                <div class="profileNav-value" id='following-count'><%= @user.nFollowing %></div>
                             <% end %>
                         </li>
                         <li class="profileNav-item">

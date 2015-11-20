@@ -26,7 +26,7 @@ class FriendshipsController < ApplicationController
 			#can add some error handlers here
 		end
 
-		@user = User.find(current_user.id)
+		@user = current_user
     following_id = @user.friendships.all.pluck(:friend_id)
     @following = User.where(id: following_id)
 		respond_to do |format|
@@ -45,7 +45,12 @@ class FriendshipsController < ApplicationController
 		friend.nFollower -= 1
 		friend.save
 
-		redirect_to user_following_path(id: current_user.id)
+		@user = current_user
+    following_id = @user.friendships.all.pluck(:friend_id)
+    @following = User.where(id: following_id)
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	private

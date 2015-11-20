@@ -21,7 +21,7 @@
           <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
           <div>
           <% if current_user.id == @user.id %>
-            <%=link_to friendship_path(id: following.id), method: :delete, data: {confirm: 'Are you sure?'} do %>
+            <%=link_to friendship_path(id: following.id), method: :delete, data: {confirm: 'Are you sure?', remote: true} do %>
               <button type="button" class="btn btn-default friends-follow-btn">Unfollow</button>
             <% end %>
           <% end %>
