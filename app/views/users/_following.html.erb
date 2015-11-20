@@ -1,0 +1,34 @@
+<!-- Following display & Add new friend to follow -->
+<div class="content-middle">
+  <div class="stream-container">
+    <ul class="friends-list">
+     <% if current_user.id == @user .id %>
+          <li class="add-friends-card">
+        <%= form_tag(friendships_path, method: "post", remote: true) do %>
+            <%= label_tag(:friend_name, "Enter new friend's name", class: "add-friend-label") %>
+            <%= text_field_tag(:friend_name, nil, class: "add-friend-field") %>
+            <%= submit_tag "add", class: "btn btn-default friends-add-btn" %>
+        <% end %>
+      </li>
+      <% end %>
+      <% followings.each do |following| %>
+      <li class="friends-card">
+        <div class="friends-card-inner">
+          <%= link_to user_path(following), :class => 'friends-card-link' do%>
+            <%= image_tag(following.image.url, class: "friends-card-avatar") %>
+            <div class="friends-card-name"><%= following.first_name%> <%= following.last_name %></div>
+          <% end %>
+          <!-- <div class="friends-card-description">Followed by {{ following.followBy}} people</div> -->
+          <div>
+          <% if current_user.id == @user.id %>
+            <%=link_to friendship_path(id: following.id), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <button type="button" class="btn btn-default friends-follow-btn">Unfollow</button>
+            <% end %>
+          <% end %>
+          </div>
+      </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

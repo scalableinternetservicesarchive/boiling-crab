@@ -19,14 +19,18 @@ class FriendshipsController < ApplicationController
 				current_user.save
 				user.nFollower += 1
 				user.save
-				redirect_to user_following_path(:id => current_user.id)
 			else
 				# can add some error handle here
-				redirect_to user_following_path(:id => current_user.id)			
 			end
 		else
-			redirect_to user_following_path(:id => current_user.id)
-			
+			#can add some error handlers here
+		end
+
+		@user = User.find(current_user.id)
+    following_id = @user.friendships.all.pluck(:friend_id)
+    @following = User.where(id: following_id)
+		respond_to do |format|
+			format.js
 		end
 	end
 
@@ -50,4 +54,8 @@ class FriendshipsController < ApplicationController
       params[:friendship][:user_id] = current_user.id
       return params
     end
+
+		def ajax_redirect_to(redirect_uri)
+    	{ js: "window.location.replace('#{redirect_uri}');" }
+  	end
 end

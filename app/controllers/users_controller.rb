@@ -10,21 +10,39 @@ class UsersController < ApplicationController
     @posts = @user.posts.where(sell_to: -1).order(created_at: :desc)
   end
 
+  def selling
+    @user = User.find(params[:id])
+    @posts = @user.posts.where(sell_to: -1).order(created_at: :desc)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def sold
     @user = User.find(params[:id])
     @posts = @user.posts.where.not(sell_to: -1).order(created_at: :desc)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def following
     @user = User.find(params[:id])
     following_id = @user.friendships.all.pluck(:friend_id)
     @following = User.where(id: following_id)
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def follower
     @user = User.find(params[:id])
     follower_id = Friendship.where(friend_id: @user.id).pluck(:user_id)
     @followers = User.where(id: follower_id)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def feed
@@ -38,22 +56,22 @@ class UsersController < ApplicationController
       @user = User.new
   end
 
-  def create 
-      @user = User.new(user_params) 
+  def create
+      @user = User.new(user_params)
 
-      if @user.save 
-        session[:user_id] = @user.id 
-        redirect_to '/' 
-      else 
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to '/'
+      else
         redirect_to error_path
-      end 
+      end
   end
 
   def error
 
   end
 
-  private 
+  private
     def user_params
       params[:user][:nFollowing] = 0
       params[:user][:nFollower] = 0

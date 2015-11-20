@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	
+
 	before_action :require_user, only: [:index]
 
 	def index
@@ -42,6 +42,13 @@ class PostsController < ApplicationController
 
 	def destroy
 		@post = Post.find(params[:id])
+		if @post.sell_to == -1
+			current_user.nPost -= 1
+			current_user.save
+		else
+			current_user.nSold -= 1
+			current_user.save
+		end
 		@post.destroy
 		redirect_to user_path(current_user)
 	end

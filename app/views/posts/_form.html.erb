@@ -1,14 +1,12 @@
 <%= form_for @post do |f| %>
   <div>
     <p>Title:</p>
-     <%= f.text_field :title, :placeholder => "Title",
-    :class => "form-control" , :required => true %>
+     <%= f.text_field :title, :placeholder => "Title", :class => "form-control" , :required => true %>
   </div>
 
   <div>
     <p>Description:</p>
-     <%= f.text_area :description, :placeholder => "Description",
-    :class => "form-control" , :required => true %>
+     <%= f.text_area :description, :placeholder => "Description",:class => "form-control" , :required => true %>
   </div>
 
   <div>

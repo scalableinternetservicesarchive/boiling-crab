@@ -11,29 +11,29 @@
         <div class="profileCanopy-navBar">
             <div class="profile-container">
                 <div class="profileCanopy-navBar-nav">
-                   <ul class="profileNav-list">
-                        <li class="profileNav-item is-active">
-                            <%= link_to user_path(@user), :class => "profileNav-link" do %>
+                   <ul class="profileNav-list" id="profileNav-list">
+                        <li class="profileNav-item">
+                            <%= link_to user_selling_path(@user), :class => "profileNav-link", :remote => true do %>
                                 <div class="profileNav-label">Selling</div>
                                 <div class="profileNav-value"><%= @user.nPost %></div>
                             <% end %>
                         </li>
 
                         <li class="profileNav-item">
-                            <%= link_to user_sold_path(@user), :class => "profileNav-link" do %>
+                            <%= link_to user_sold_path(@user), :class => "profileNav-link", :remote => true do %>
                                 <div class="profileNav-label">sold</div>
                                 <div class="profileNav-value"><%= @user.nSold %></div>
                             <% end %>
                         </li>
 
                         <li class="profileNav-item">
-                            <%= link_to user_following_path(id: @user.id), :class => "profileNav-link"  do %>
+                            <%= link_to user_following_path(id: @user.id), :class => "profileNav-link", :remote => true do %>
                                 <div class="profileNav-label">following</div>
                                 <div class="profileNav-value"><%= @user.nFollowing %></div>
                             <% end %>
                         </li>
                         <li class="profileNav-item">
-                            <%= link_to user_follower_path(id: @user.id), :class => "profileNav-link" do %>
+                            <%= link_to user_follower_path(id: @user.id), :class => "profileNav-link", :remote => true do %>
                                 <div class="profileNav-label">followers</div>
                                 <div class="profileNav-value"><%= @user.nFollower %></div>
                             <% end %>
@@ -65,15 +65,9 @@
                 <%= render "layouts/popular_categories" %>
             </div>
 
-            <!-- <div ui-view></div> -->
-
             <!-- main post stream -->
-            <div class="content-middle">
-              <div class="stream-container">
-                <ol class="stream-items">
-                  <%= render @posts %>
-                </ol>
-              </div>
+            <div id="middleSection">
+                <%= render partial: "users/selling", locals: {posts: @posts} %>
             </div>
 
             <!-- right dashboard -->
@@ -85,3 +79,11 @@
         </div>
     </div>
 </div>
+
+<script>
+  var selector = '#profileNav-list li';
+  $(selector).on('click', function() {
+    $(selector).removeClass('is-active');
+    $(this).addClass('is-active');
+  });
+</script>
