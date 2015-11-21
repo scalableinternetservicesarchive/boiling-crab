@@ -7,7 +7,7 @@
   </clients>
 
   <servers>
-    <server host="ec2-52-33-123-54.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-33-79-4.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
   <load>
@@ -25,7 +25,7 @@
   </options>
   
   <sessions>
-    <session name='sign_up' probability='100' type='ts_http'>
+    <session name='http-example' probability='100' type='ts_http'>
       
       <setdynvars sourcetype="eval"
             code='fun({Pid,DynVars})-> [[13, 10]] end.'>
@@ -50,16 +50,8 @@
           version='1.1'
           method='POST'
           content_type='multipart/form-data; boundary=----FormBoundary'
-          contents='
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="utf8"%%_nl%%%%_nl%%%E2%9C%93%%_nl%%
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[first_name]"%%_nl%%%%_nl%%Chris_%%_rand_val%%%%_nl%%
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[last_name]"%%_nl%%%%_nl%%Paul_%%_rand_val%%%%_nl%%
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[email]"%%_nl%%%%_nl%%test_email_%%_rand_val%%@gmail.com%%_nl%%
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[password]"%%_nl%%%%_nl%%haha
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[password_confirmation]"%%_nl%%%%_nl%%haha
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[image]"; filename="sign_up_sample.png"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file%%%%_nl%%
-------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Sign up%%_nl%%
-------FormBoundary--%%_nl%%%%_nl%%'>
+          contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[first_name]"%%_nl%%%%_nl%%Chris_%%_rand_val%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[last_name]"%%_nl%%%%_nl%%Paul_%%_rand_val%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[email]"%%_nl%%%%_nl%%test_email_%%_rand_val%%@gmail.com%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[password]"%%_nl%%%%_nl%%haha------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[password_confirmation]"%%_nl%%%%_nl%%haha------FormBoundary%%_nl%%Content-Disposition: form-data; name="user[image]"; filename="sign_up_sample.png"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Sign up%%_nl%%------FormBoundary--%%_nl%%%%_nl%%
+'>
         </http>
       </request>
     </session>
