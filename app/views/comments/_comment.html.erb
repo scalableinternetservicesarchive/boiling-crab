@@ -1,11 +1,12 @@
-<p>
-	<%= User.find(comment.commender_id)[:email] %>:
-	<%= comment.created_at %>
-</p>
-<p>
-	<%= comment.body %>
-	<% if current_user.id == comment.commender_id %>
-		<%= link_to 'delete', [comment.post, comment], method: :delete,
-              	data: {confirm: 'Are you sure?'} %>
-  <% end %>
-</p>
+<li class="comment-item">
+	<p>
+		<%= User.find(comment.commender_id)[:email] %>:
+		<%= comment.created_at %>
+	</p>
+	<p>
+		<%= comment.body %>
+		<% if current_user.id == comment.commender_id %>
+			<%= link_to 'delete', [comment.post, comment], method: :delete, class: "comment-delete", remote: true, data: {confirm: 'Are you sure?'} %>
+	  <% end %>
+	</p>
+</li>

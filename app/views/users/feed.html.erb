@@ -25,6 +25,12 @@
     <%= render "layouts/popular_sellers" %>
     <%= render "layouts/potential_friends" %>
   </div>
-  
+
 </div>
 
+<script>
+$(".comment-delete").click(function(){
+  console.log('ehee');
+  $(this).parent().parent().remove();
+});
+</script>
