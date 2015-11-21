@@ -14,7 +14,9 @@
   <div class="content-middle">
     <div class="stream-container">
       <ol class="stream-items">
-        <%= render @feed_posts %>
+        <% cache(cache_key_for_feed_post) do %>
+          <%= render @feed_posts %>
+        <% end %>
       </ol>
     </div>
   </div>

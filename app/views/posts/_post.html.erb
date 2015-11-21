@@ -1,3 +1,4 @@
+<% cache(cache_key_for_post_row(post)) do %>
 <li class="stream-item">
   <div class="stream-post">
     <div class="stream-content">
@@ -111,6 +112,7 @@
 
   </div>
 </li>
+<% end %>
 
 <script>
 function toggleComment(post_id) {
