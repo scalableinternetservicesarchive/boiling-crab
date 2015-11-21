@@ -1,3 +1,4 @@
+
 <% cache(cache_key_for_post_row(post)) do %>
 <li class="stream-item">
   <div class="stream-post">
@@ -79,7 +80,9 @@
     <div id="comment-section-<%= post.id%>" style="display: none">
       <!-- Display the comments -->
       <div>
-        <%= render post.comments.order(id: :desc) %>
+        <% cache(cache_key_for_post_comments(post)) do %>
+          <%= render post.comments.order(id: :desc) %>
+        <% end %>
       </div>
 
       <hr class="post-hr">

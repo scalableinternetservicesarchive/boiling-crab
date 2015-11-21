@@ -11,20 +11,20 @@ class UsersController < ApplicationController
   end
 
   def sold
-    @user = User.find(params[:id])
-    @posts = @user.posts.where.not(sell_to: -1).order(created_at: :desc)
+      @user = User.find(params[:id])
+      @posts = @user.posts.where.not(sell_to: -1).order(created_at: :desc)
   end
 
   def following
-    @user = User.find(params[:id])
-    following_id = @user.friendships.all.pluck(:friend_id)
-    @following = User.where(id: following_id)
+      @user = User.find(params[:id])
+      following_id = @user.friendships.all.pluck(:friend_id)
+      @following = User.where(id: following_id)
   end
 
   def follower
-    @user = User.find(params[:id])
-    follower_id = Friendship.where(friend_id: @user.id).pluck(:user_id)
-    @followers = User.where(id: follower_id)
+      @user = User.find(params[:id])
+      follower_id = Friendship.where(friend_id: @user.id).pluck(:user_id)
+      @followers = User.where(id: follower_id)
   end
 
   def feed

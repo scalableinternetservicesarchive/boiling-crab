@@ -1,3 +1,4 @@
+<% cache(cache_key_for_comment(comment)) do %>
 <p>
 	<%= User.find(comment.commender_id)[:email] %>:
 	<%= comment.created_at %>
@@ -9,3 +10,4 @@
               	data: {confirm: 'Are you sure?'} %>
   <% end %>
 </p>
+<% end %>
