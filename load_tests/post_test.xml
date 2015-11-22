@@ -44,7 +44,7 @@
           url='/posts'
           version='1.1'
           method='POST'
-          contents="utf8=%E2%9C%93&amp;post%5Btitle%5D=p_%%_rand_val%%&amp;post%5Bdescription%5D=p_$$_rand_val%%&amp;post%5Bprice%5D=10&amp;commit=Create+Post">
+          contents="utf8=%E2%9C%93&amp;post%5Btitle%5D=p_%%_rand_val%%&amp;post%5Bdescription%5D=p_%%_rand_val%%&amp;post%5Bprice%5D=10&amp;commit=Create+Post">
       </http>
       </request>
     </session>
