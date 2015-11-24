@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
     post.orders.create({user_id: current_user.id})
     respond_to do |format|
       format.json { head :no_content }
+	    format.html { head :no_content }
     end
   end
 
@@ -25,6 +26,7 @@ class OrdersController < ApplicationController
     order.destroy
     respond_to do |format|
       format.json { head :no_content }
+	    format.html { head :no_content }
     end
   end
 end
