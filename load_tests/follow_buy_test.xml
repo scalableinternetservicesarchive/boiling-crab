@@ -9,13 +9,25 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-27-232-113.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-27-58-144.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
     <arrivalphase phase="1" duration="10" unit="second">
       <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="10" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="10" unit="second">
+      <users arrivalrate="16" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="4" duration="10" unit="second">
+      <users arrivalrate="64" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="5" duration="10" unit="second">
+      <users arrivalrate="128" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -44,11 +56,16 @@
         </http>
       </request>
 
-      <!-- GET /users/<userid>/following -->
       <request>
-        <http url='/' version='1.1' method='GET'/>
+        <dyn_variable name="following_path"
+     		xpath="//div[@class='dashboardProfileCard-stats']/ul/li[2]/a/@href"/>
+        <http url='/' method='GET' version='1.0' />
       </request>
-      
+
+      <request subst="true">
+        <http url='%%_following_path%%' method='GET' version='1.0' />
+      </request>
+
       <request>
         <http
           url='/friendships'
@@ -62,8 +79,16 @@
         <http url='/posts/7/orders' version='1.1' method='POST' contents=''></http>
       </request>
       
+      <request subst="true">
+        <http url='%%_following_path%%' method='GET' version='1.0' />
+      </request>
+
       <request>
         <http url='/posts/7/orders/1' version='1.1' method='DELETE' contents=''></http>
+      </request>
+
+      <request subst="true">
+        <http url='%%_following_path%%' method='GET' version='1.0' />
       </request>
 
       <request>
