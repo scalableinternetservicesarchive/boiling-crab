@@ -119,48 +119,4 @@ function toggleComment(post_id) {
 function toggleOrder(post_id) {
   $('#order-section-' + post_id).toggle();
 }
-
-function addComment(post_id) {
-  $.ajax({
-    url: "/posts/" + post_id + "/orders",
-    type: "POST",
-    data: {},
-    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    success: function(data)
-    {
-        //data - response from server
-        console.log("buy successful");
-        ele.innerHTML = "Cancel";
-        ele.classList.remove("post-cost-buy-btn");
-        ele.classList.add("post-cost-cancel-btn");
-        ele.setAttribute('onclick', 'cancel(' + post_id + ',this)');
-    },
-    error: function (error)
-    {
-      console.log("buy error");
-    }
-  });
-}
-
-function deleteComment(post_id, ele) {
-  $.ajax({
-    url: "/posts/" + post_id + "/orders",
-    type: "POST",
-    data: {},
-    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    success: function(data)
-    {
-        //data - response from server
-        console.log("buy successful");
-        ele.innerHTML = "Cancel";
-        ele.classList.remove("post-cost-buy-btn");
-        ele.classList.add("post-cost-cancel-btn");
-        ele.setAttribute('onclick', 'cancel(' + post_id + ',this)');
-    },
-    error: function (error)
-    {
-      console.log("buy error");
-    }
-  });
-}
 </script>
