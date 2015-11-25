@@ -11,8 +11,10 @@ class PostsController < ApplicationController
 	end
 
 	def new
-		@post = Post.new
 		@user = current_user
+		if stale?([@user, @user.posts])
+				@post = Post.new
+		end
 	end
 
 	def edit

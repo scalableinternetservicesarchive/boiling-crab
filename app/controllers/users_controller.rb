@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.where(sell_to: -1).order(created_at: :desc)
+    fresh_when([@user, @posts])
   end
 
   def sold
@@ -18,20 +19,26 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     following_id = @user.friendships.all.pluck(:friend_id)
-    @following = User.where(id: following_id)
+    if stale?([@user, following_id])
+      @following = User.where(id: following_id)
+    end 
   end
 
   def follower
     @user = User.find(params[:id])
     follower_id = Friendship.where(friend_id: @user.id).pluck(:user_id)
-    @followers = User.where(id: follower_id)
+    if stale?([@user, follower_id])
+      @followers = User.where(id: follower_id)
+    end
   end
 
   def feed
     feed_users_ids = current_user.friends.pluck(:id)
     @feed_posts = Post.where(user_id: feed_users_ids, sell_to: -1).order(updated_at: :desc)
     @user = current_user
-    @comment = Comment.new
+    if stale?([@user, @feed_posts, Comment.all])
+      @comment = Comment.new
+    end 
   end
 
   def new
