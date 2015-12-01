@@ -114,9 +114,15 @@
 
 <script>
 function toggleComment(post_id) {
+  if ($('#order-section-' + post_id).is(":visible")) {
+    $('#order-section-' + post_id).toggle();
+  }
   $('#comment-section-' + post_id).toggle();
 }
 function toggleOrder(post_id) {
+  if ($('#comment-section-' + post_id).is(":visible")) {
+    $('#comment-section-' + post_id).toggle();
+  }
   $('#order-section-' + post_id).toggle();
 }
 </script>
