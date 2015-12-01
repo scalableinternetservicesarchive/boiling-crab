@@ -5,6 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Friendship.delete_all
+Comment.delete_all
+Post.delete_all
+User.delete_all
+
+require 'faker'
+
+number_of_users = 10
+number_of_posts_per_user = 10
+number_of_comments_per_post = 10
+
+
 u1 = User.create(first_name: 'Ziqiang', last_name: 'Shi', email: 'a@a', password: 'a', password_confirmation: 'a',
 	nFollowing: 2, nFollower: 2, nPost: 2, nSold: 0, image: File.open("#{Rails.root}/public/images/users/user1.jpg"))
 u2 = User.create(first_name: 'Shijian', last_name: 'Zheng', email: 'b@b', password: 'b', password_confirmation: 'b',
@@ -13,6 +26,31 @@ u3 = User.create(first_name: 'Kai', last_name: 'Wang', email: 'c@c', password: '
 	nFollowing: 2, nFollower: 2, nPost: 2,  nSold: 0, image: File.open("#{Rails.root}/public/images/users/user3.jpg"))
 u4 = User.create(first_name: 'Yu', last_name: 'Xie', email: 'd@d', password: 'd', password_confirmation: 'd',
 	nFollowing: 2, nFollower: 2, nPost: 2,  nSold: 0, image: File.open("#{Rails.root}/public/images/users/user4.jpg"))
+
+
+number_of_users.times do
+  # Create new random user.
+  fake_password = Faker::Internet.password
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
+    email: Faker::Internet.email, password: fake_password, password_confirmation: fake_password,
+    nFollowing: 0, nFollower: 0, nPost: number_of_posts_per_user, nSold: 0,
+    image: File.open("#{Rails.root}/public/images/question_mark.jpg"))
+
+  # Create new friendship.
+  Friendship.create(user_id: u1.id, friend_id: user.id)
+
+  number_of_posts_per_user.times do
+    # Create new random post.
+    post = Post.create(title: Faker::Lorem.word, description: Faker::Lorem.sentence,
+      price: Faker::Number.number(3), user_id: user.id, sell_to: -1,
+      image: File.open("#{Rails.root}/public/images/question_mark.jpg"))
+
+    # Create random comments for each random post.
+    number_of_comments_per_post.times do
+      Comment.create(commender_id: 1, body: Faker::Lorem.sentence, post_id: post.id)
+    end
+  end
+end
 
 Friendship.create(user_id: u1.id, friend_id: u2.id)
 Friendship.create(user_id: u1.id, friend_id: u3.id)

@@ -34,6 +34,8 @@ gem 'mysql2', '~> 0.3.13'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'faker'
+
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'fog'
