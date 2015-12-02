@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-27-58-144.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-33-219-64.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -18,16 +18,19 @@
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="10" unit="second">
-      <users arrivalrate="4" unit="second"></users>
+      <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="3" duration="10" unit="second">
-      <users arrivalrate="16" unit="second"></users>
+      <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="4" duration="10" unit="second">
-      <users arrivalrate="64" unit="second"></users>
+      <users arrivalrate="8" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="5" duration="10" unit="second">
-      <users arrivalrate="128" unit="second"></users>
+      <users arrivalrate="12" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="6" duration="10" unit="second">
+      <users arrivalrate="15" unit="second"></users>
     </arrivalphase>
   </load>
 
@@ -45,6 +48,10 @@
       <!-- Sign up a random user-->
       <setdynvars sourcetype="random_number" start="1000" end="9999999">
         <var name="rand_val" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="1" end="100">
+        <var name="rand_post_id" />
       </setdynvars>
 
       <request subst="true">
@@ -71,28 +78,32 @@
           url='/friendships'
           version='1.1'
           method='POST'
-          contents="utf8=%E2%9C%93&amp;friend_name=Yu+Xie&amp;commit=add">
+          contents="utf8=%E2%9C%93&amp;friend_name=Test+Test&amp;commit=add">
       	</http>
       </request>
       
-      <request>
-        <http url='/posts/7/orders' version='1.1' method='POST' contents=''></http>
+      <request subst="true">
+        <http url='%%_following_path%%' method='GET' version='1.0' />
+      </request>
+   
+      <request subst="true">
+	<http url="/users/5" method='GET' version='1.0'/>
+      </request>
+
+      <request subst="true">
+        <http url='/posts/%%_rand_post_id%%/orders' version='1.1' method='POST' contents=''></http>
       </request>
       
       <request subst="true">
-        <http url='%%_following_path%%' method='GET' version='1.0' />
+        <http url='/posts/%%_rand_post_id%%/orders/1' version='1.1' method='DELETE' contents=''></http>
       </request>
 
       <request>
-        <http url='/posts/7/orders/1' version='1.1' method='DELETE' contents=''></http>
+        <http url='/friendships/5' version='1.1' method='POST' contents="_method=delete"></http>
       </request>
 
       <request subst="true">
         <http url='%%_following_path%%' method='GET' version='1.0' />
-      </request>
-
-      <request>
-        <http url='/friendships/4' version='1.1' method='POST' contents="_method=delete"></http>
       </request>
 
     </session>
