@@ -7,13 +7,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where(sell_to: -1).includes(:comments, :orders)
+    @posts = @user.posts.where(sell_to: -1)
       .paginate(:page => params[:page], :per_page => 10).order(id: :desc)
   end
 
   def sold
     @user = User.find(params[:id])
-    @posts = @user.posts.where.not(sell_to: -1).includes(:comments)
+    @posts = @user.posts.where.not(sell_to: -1)
       .paginate(:page => params[:page], :per_page => 10).order(id: :desc)
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def feed
     feed_users_ids = current_user.friends.pluck(:id)
-    @feed_posts = Post.where(user_id: feed_users_ids, sell_to: -1).includes(:comments)
+    @feed_posts = Post.where(user_id: feed_users_ids, sell_to: -1)
       .paginate(:page => params[:page], :per_page => 10).order(id: :desc)
     @comment = Comment.new
   end
