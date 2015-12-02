@@ -36,8 +36,6 @@ gem 'mysql2', '~> 0.3.13'
 
 gem 'will_paginate', '~> 3.0.6'
 
-gem 'faker'
-
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'fog'

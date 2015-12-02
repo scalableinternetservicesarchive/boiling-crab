@@ -34,7 +34,7 @@ number_of_posts_per_user.times do
 
   # Create random comments for each random post.
   number_of_comments_per_post.times do
-    Comment.create(commender_id: 1, body: 'xxxxx xxxxx xxxxx', post_id: post.id)
+    Comment.create(commender_id: u1.id, body: 'xxxxx xxxxx xxxxx', post_id: post.id)
   end
 end
 Friendship.create(user_id: u1.id, friend_id: u5.id)
@@ -71,11 +71,11 @@ p8 = Post.create(title: 'iphone', description: 'This is broken second-handed iph
   price: 50, user_id: u4.id, sell_to: -1, image: File.open("#{Rails.root}/public/images/posts/iphone.jpg"))
 
 
-Comment.create(commender_id: 1, body: 'Buy the chair!', post_id: p1.id)
-Comment.create(commender_id: 4, body: 'The chair looks so old.', post_id: p1.id)
-Comment.create(commender_id: 2, body: 'Come buy my lamp!', post_id: p3.id)
-Comment.create(commender_id: 1, body: 'What a ugly lamp.', post_id: p3.id)
-Comment.create(commender_id: 3, body: 'My bike is so cool!', post_id: p5.id)
-Comment.create(commender_id: 2, body: 'I like it.', post_id: p5.id)
-Comment.create(commender_id: 4, body: 'It still works even it is broken.', post_id: p7.id)
-Comment.create(commender_id: 3, body: 'Keep it for me.', post_id: p7.id)
+Comment.create(commender_id: u1.id, body: 'Buy the chair!', post_id: p1.id)
+Comment.create(commender_id: u4.id, body: 'The chair looks so old.', post_id: p1.id)
+Comment.create(commender_id: u2.id, body: 'Come buy my lamp!', post_id: p3.id)
+Comment.create(commender_id: u1.id, body: 'What a ugly lamp.', post_id: p3.id)
+Comment.create(commender_id: u3.id, body: 'My bike is so cool!', post_id: p5.id)
+Comment.create(commender_id: u2.id, body: 'I like it.', post_id: p5.id)
+Comment.create(commender_id: u4.id, body: 'It still works even it is broken.', post_id: p7.id)
+Comment.create(commender_id: u3.id, body: 'Keep it for me.', post_id: p7.id)
