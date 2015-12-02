@@ -5,7 +5,7 @@
 <p>
 	<%= comment.body %>
 	<% if current_user.id == comment.commender_id %>
-		<%= link_to 'delete', [comment.post, comment], method: :delete,
+		<%= link_to 'delete', [comment_post, comment], method: :delete,
               	data: {confirm: 'Are you sure?'} %>
   <% end %>
 </p>

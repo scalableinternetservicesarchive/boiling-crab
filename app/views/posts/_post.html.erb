@@ -23,13 +23,13 @@
         <div class="post-cost-value">$<%= post.price %></div>
           <%if post.sell_to == -1 %>
             <%if current_user.id != post.user_id %>
-              <% if !post.orders.find_by(user_id: current_user.id) %>
+              <% if !post.orders.exists?(user_id: current_user.id) %>
                 <div onclick="buy(<%= post.id %>, this)"  class="post-cost-buy-btn">Order</div>
               <% else %>
                 <div onclick="cancel(<%= post.id %>, this)"  class="post-cost-cancel-btn">Cancel</div>
               <% end %>
             <% else %>
-              <div class="post-cost-buy-btn"><%= post.orders.count%> ordered</div>
+              <div class="post-cost-buy-btn"><%= post.orders.size%> ordered</div>
             <% end %>
           <% else %>
             <div class="post-sold-to-label">Sold to</div>
@@ -49,16 +49,15 @@
       <div class="post-action post-action-like">
         <a href="javascript:void(0)" onclick='toggleComment(<%= post.id %>)'>
           <span class="glyphicon  glyphicon-comment"></span>
-          &nbsp;<%= post.comments.count %> Comments
+          &nbsp;<%= post.comments.size %> Comments
         </a>
       </div>
-
 
       <% if current_user.id == post.user_id && post.sell_to == -1 %>
         <div class="post-action post-action-like">
           <a href="javascript:void(0)" onclick='toggleOrder(<%= post.id %>)'>
             <span class="glyphicon glyphicon-comment"></span>
-            &nbsp;<%=post.orders.count %> Orders
+            &nbsp;<%=post.orders.size %> Orders
           </a>
         </div>
       <% end %>
@@ -78,7 +77,8 @@
     <div id="comment-section-<%= post.id%>" style="display: none">
       <!-- Display the comments -->
       <div>
-        <%= render post.comments.order(id: :desc) %>
+        <%= render partial: "comments/comment", collection: post.comments,
+          locals: {comment_post: post} %>
       </div>
 
       <hr class="post-hr">
@@ -89,6 +89,7 @@
       </div>
     </div>
 
+    <% if current_user.id == post.user_id %>
     <ul class="friends-list" id="order-section-<%= post.id %>" style="display: none">
       <% post.orders.each do |order| %>
       <li class="friends-card">
@@ -108,6 +109,7 @@
       </li>
       <% end %>
     </ul>
+    <% end %>
 
   </div>
 </li>
