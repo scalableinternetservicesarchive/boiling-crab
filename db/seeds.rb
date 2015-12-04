@@ -13,7 +13,7 @@ User.delete_all
 
 
 u1 = User.create(first_name: 'Ziqiang', last_name: 'Shi', email: 'a@a', password: 'a', password_confirmation: 'a',
-	nFollowing: 2, nFollower: 2, nPost: 2, nSold: 0, image: File.open("#{Rails.root}/public/images/users/user1.jpg"))
+	nFollowing: 3, nFollower: 2, nPost: 2, nSold: 0, image: File.open("#{Rails.root}/public/images/users/user1.jpg"))
 u2 = User.create(first_name: 'Shijian', last_name: 'Zheng', email: 'b@b', password: 'b', password_confirmation: 'b',
 	nFollowing: 2, nFollower: 2, nPost: 2, nSold: 0, image: File.open("#{Rails.root}/public/images/users/user2.jpg"))
 u3 = User.create(first_name: 'Kai', last_name: 'Wang', email: 'c@c', password: 'c', password_confirmation: 'c',
