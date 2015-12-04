@@ -5,6 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Friendship.delete_all
+Comment.delete_all
+Post.delete_all
+User.delete_all
+
+
 u1 = User.create(first_name: 'Ziqiang', last_name: 'Shi', email: 'a@a', password: 'a', password_confirmation: 'a',
 	nFollowing: 2, nFollower: 2, nPost: 2, nSold: 0, image: File.open("#{Rails.root}/public/images/users/user1.jpg"))
 u2 = User.create(first_name: 'Shijian', last_name: 'Zheng', email: 'b@b', password: 'b', password_confirmation: 'b',
@@ -13,6 +20,25 @@ u3 = User.create(first_name: 'Kai', last_name: 'Wang', email: 'c@c', password: '
 	nFollowing: 2, nFollower: 2, nPost: 2,  nSold: 0, image: File.open("#{Rails.root}/public/images/users/user3.jpg"))
 u4 = User.create(first_name: 'Yu', last_name: 'Xie', email: 'd@d', password: 'd', password_confirmation: 'd',
 	nFollowing: 2, nFollower: 2, nPost: 2,  nSold: 0, image: File.open("#{Rails.root}/public/images/users/user4.jpg"))
+
+# User for TSUNG testing;
+number_of_posts_per_user = 100
+number_of_comments_per_post = 10
+u5 = User.create(first_name: 'TEST', last_name: 'TEST', email: 'e@e', password: 'e', password_confirmation: 'e',
+	nFollowing: 0, nFollower: 1, nPost: 100,  nSold: 0, image: File.open("#{Rails.root}/public/images/question_mark.jpg"))
+number_of_posts_per_user.times do
+  # Create new random post.
+  post = Post.create(title: 'XXXX', description: 'xxxx xxxx xxxx',
+    price: 88, user_id: u5.id, sell_to: -1,
+    image: File.open("#{Rails.root}/public/images/question_mark.jpg"))
+
+  # Create random comments for each random post.
+  number_of_comments_per_post.times do
+    Comment.create(commender_id: u1.id, body: 'xxxxx xxxxx xxxxx', post_id: post.id)
+  end
+end
+Friendship.create(user_id: u1.id, friend_id: u5.id)
+
 
 Friendship.create(user_id: u1.id, friend_id: u2.id)
 Friendship.create(user_id: u1.id, friend_id: u3.id)
@@ -41,11 +67,11 @@ p8 = Post.create(title: 'iphone', description: 'This is broken second-handed iph
 	price: 50, user_id: u4.id, sell_to: -1, image: File.open("#{Rails.root}/public/images/posts/iphone.jpg"))
 
 
-Comment.create(commender_id: 1, body: 'Buy the chair!', post_id: p1.id)
-Comment.create(commender_id: 4, body: 'The chair looks so old.', post_id: p1.id)
-Comment.create(commender_id: 2, body: 'Come buy my lamp!', post_id: p3.id)
-Comment.create(commender_id: 1, body: 'What a ugly lamp.', post_id: p3.id)
-Comment.create(commender_id: 3, body: 'My bike is so cool!', post_id: p5.id)
-Comment.create(commender_id: 2, body: 'I like it.', post_id: p5.id)
-Comment.create(commender_id: 4, body: 'It still works even it is broken.', post_id: p7.id)
-Comment.create(commender_id: 3, body: 'Keep it for me.', post_id: p7.id)
+Comment.create(commender_id: u1.id, body: 'Buy the chair!', post_id: p1.id)
+Comment.create(commender_id: u4.id, body: 'The chair looks so old.', post_id: p1.id)
+Comment.create(commender_id: u2.id, body: 'Come buy my lamp!', post_id: p3.id)
+Comment.create(commender_id: u1.id, body: 'What a ugly lamp.', post_id: p3.id)
+Comment.create(commender_id: u3.id, body: 'My bike is so cool!', post_id: p5.id)
+Comment.create(commender_id: u2.id, body: 'I like it.', post_id: p5.id)
+Comment.create(commender_id: u4.id, body: 'It still works even it is broken.', post_id: p7.id)
+Comment.create(commender_id: u3.id, body: 'Keep it for me.', post_id: p7.id)

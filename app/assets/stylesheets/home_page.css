@@ -62,7 +62,7 @@ ul, ol {
   min-width: 590px;
   height: 46px;
   margin: 0 auto;
-  width: auto;  
+  width: auto;
 }
 .nav-bar-logo {
   position: absolute;
@@ -240,7 +240,7 @@ ul, ol {
   padding: 5px 12px;
 }
 
-/******* seems it doesn't need this ********/ 
+/******* seems it doesn't need this ********/
 .divider {
   width: 100%;
 }
@@ -419,7 +419,7 @@ ul, ol {
 }
 
 .dashboardCategoryCard-item a {
-  display: block; 
+  display: block;
 }
 .dashboardCategoryCard-item .goods-name {
   font-weight: bold;
@@ -494,7 +494,7 @@ ul, ol {
 
 .stream-item {
   background: #fff;
-  border-radius: 5px; 
+  border-radius: 5px;
   margin-bottom: 10px;
   border: 1px solid #e1e8ed;
 }
@@ -722,7 +722,7 @@ ul, ol {
 }
 
 .profile-container {
-  margin: 0 auto; 
+  margin: 0 auto;
   max-width: 890px;
   position: relative;
 }
@@ -921,3 +921,36 @@ ul, ol {
   border-radius: 7px;
 }
 
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+}
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em;
+}
+.apple_pagination .disabled {
+    color: #aaaaaa;
+}
+.apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
+}
+.apple_pagination a {
+    text-decoration: none;
+    color: black;
+}
+.apple_pagination a:hover, .apple_pagination a:focus {
+      text-decoration: underline;
+}

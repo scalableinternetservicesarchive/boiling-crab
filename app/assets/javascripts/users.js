@@ -31,7 +31,7 @@ function cancel(post_id, ele) {
       ele.innerHTML = "Order";
       ele.classList.remove("post-cost-cancel-btn");
       ele.classList.add("post-cost-buy-btn");
-      ele.setAttribute('onclick', 'buy(' + post_id + ',this)');      
+      ele.setAttribute('onclick', 'buy(' + post_id + ',this)');
     },
     error: function(error) {
       console.log("cancel error");
